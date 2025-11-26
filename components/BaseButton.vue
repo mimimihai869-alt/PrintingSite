@@ -42,7 +42,7 @@ const sizeClasses = computed(() => {
   const sizes = {
     small: 'px-6 py-2 text-sm',
     medium: 'px-8 py-3 text-base',
-    large: 'px-10 py-4 text-lg'
+    large: 'px-10 py-3 text-lg'
   }
   return sizes[props.size]
 })

@@ -167,8 +167,8 @@ onUnmounted(() => {
           style="background-color: var(--color-bg-alt); border: 2px solid var(--color-border)"
         >
           <span
-            class="font-heading text-h4"
-            style="color: var(--color-text-muted)"
+            class="font-heading text-h2 md:text-h1"
+            style="color: var(--color-text-main)"
           >
             {{ service.title }}
           </span>
@@ -180,10 +180,10 @@ onUnmounted(() => {
           style="background-color: var(--color-accent-green)"
         >
           <p
-            class="font-body text-p2 text-center"
+            class="font-body text-p1 md:text-[18px] text-center"
             style="color: var(--color-bg-main)"
           >
-            {{ service.title }} — Click to learn more
+            {{ service.title }} — Apasă pentru detalii
           </p>
         </div>
       </article>

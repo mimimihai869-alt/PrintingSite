@@ -46,8 +46,8 @@ onUnmounted(() => {
       <article
         v-for="i in 6"
         :key="i"
-        class="work-item aspect-square rounded-lg overflow-hidden"
-        style="background-color: var(--color-bg-main); border: 2px solid var(--color-border)"
+        class="work-item aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer"
+        style="background-color: var(--color-bg-main); border: 2px solid var(--color-accent-green)"
       >
         <!-- Placeholder for portfolio images -->
         <div class="w-full h-full flex items-center justify-center">

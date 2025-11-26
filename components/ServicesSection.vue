@@ -56,8 +56,8 @@ onUnmounted(() => {
       <article
         v-for="service in services"
         :key="service.id"
-        class="service-card p-6 rounded-lg"
-        style="background-color: var(--color-bg-alt); border: 1px solid var(--color-border)"
+        class="service-card p-6 rounded-lg hover:shadow-lg transition-shadow duration-300"
+        style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
       >
         <h3 class="font-heading text-h5 mb-3" style="color: var(--color-text-main)">
           {{ service.title }}

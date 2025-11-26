@@ -68,8 +68,8 @@ onUnmounted(() => {
       <article
         v-for="testimonial in testimonials"
         :key="testimonial.id"
-        class="testimonial-card p-8 rounded-lg"
-        style="background-color: var(--color-bg-alt)"
+        class="testimonial-card p-8 rounded-lg border-l-4"
+        style="background-color: var(--color-bg-alt); border-left-color: var(--color-accent-green)"
       >
         <p
           class="font-body text-p1 mb-6 italic"

@@ -32,7 +32,7 @@ onUnmounted(() => {
     id="welcome"
     ref="sectionRef"
     class="mx-auto max-w-page px-4 py-16 md:py-24"
-    style="background-color: var(--color-bg-main)"
+    style="background-color: var(--color-accent-soft)"
   >
     <div class="welcome-content text-center max-w-4xl mx-auto">
       <h2

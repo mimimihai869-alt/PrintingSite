@@ -1,7 +1,14 @@
 <script setup>
+import { onMounted } from 'vue'
+
 // Page meta
 useHead({
   title: 'PrintCo - Servicii Profesionale de Printare'
+})
+
+// Ensure page starts at top on load
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 </script>
 
