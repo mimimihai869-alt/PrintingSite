@@ -36,7 +36,7 @@ onMounted(() => {
 
     // Hide hero text and navbar initially
     gsap.set(heroTextRef.value, { opacity: 0, y: 30 })
-    gsap.set('.navbar', { y: -100, opacity: 0 })
+    gsap.set('.navbar', { opacity: 0 })
 
     // Set initial state for images - scattered positions with rotation
     images.forEach((image, index) => {
@@ -70,7 +70,6 @@ onMounted(() => {
 
         // Show navbar and title as images start arranging
         gsap.to('.navbar', {
-          y: 0,
           opacity: 1,
           duration: 0.6,
           ease: 'power2.out'
