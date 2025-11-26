@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Neutrals / backgrounds */
+  --color-bg-main: #FAF7F3;
+  --color-bg-alt: #F3EEE7;
+  --color-border: #D0C8C0;
+  --color-text-muted: #4A4A4A;
+  --color-text-main: #111111;
+
+  /* Accents */
+  --color-accent-green: #7A8F74;
+  --color-accent-soft: #D2E4C7;
+}
+
+@layer base {
+  body {
+    font-family: 'Raleway', system-ui, sans-serif;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'EB Garamond', serif;
+  }
+}
