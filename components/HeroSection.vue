@@ -101,7 +101,7 @@ onMounted(() => {
       }, index * 0.35)
     })
 
-    // Phase 2: Cards scale down and arrange in carousel formation (smooth and gradual)
+    // Phase 2: Cards scale down and arrange in carousel formation
     masterTimeline.to(montageCards, {
       scale: 0.3, // Scale down to carousel size
       x: (index) => {
@@ -110,25 +110,18 @@ onMounted(() => {
         return centerOffset + (index * 15) + 'vw'
       },
       y: '20vh', // Move down slightly
-      duration: 1.4,
-      ease: 'power4.inOut',
-      stagger: 0.02
-    }, '+=0.4')
+      duration: 1,
+      ease: 'power3.inOut',
+      stagger: 0.03
+    }, '+=0.3')
 
-    // Phase 3: Fade in hero text (overlapping with card animation)
+    // Phase 3: Fade in hero text
     masterTimeline.to(heroTextRef.value, {
       opacity: 1,
       y: 0,
-      duration: 1,
-      ease: 'power3.out'
-    }, '-=0.8')
-
-    // Phase 4: Smooth fade to final carousel
-    masterTimeline.to(montageCards, {
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.inOut'
-    }, '+=0.2')
+      duration: 0.8,
+      ease: 'power2.out'
+    }, '-=0.5')
 
   }, heroRef.value)
 })
