@@ -26,7 +26,7 @@ export default {
         'p3': ['11px', { lineHeight: '1.6' }]
       },
       maxWidth: {
-        page: '1440px'
+        page: '1200px'
       }
     }
   },
