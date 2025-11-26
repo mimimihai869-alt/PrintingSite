@@ -101,7 +101,7 @@ onMounted(() => {
       }, index * 0.35)
     })
 
-    // Phase 2: Cards scale down and arrange in carousel formation
+    // Phase 2: Cards scale down and arrange in carousel formation (smooth and gradual)
     masterTimeline.to(montageCards, {
       scale: 0.3, // Scale down to carousel size
       x: (index) => {
@@ -110,18 +110,25 @@ onMounted(() => {
         return centerOffset + (index * 15) + 'vw'
       },
       y: '20vh', // Move down slightly
-      duration: 1,
-      ease: 'power3.inOut',
-      stagger: 0.03
-    }, '+=0.3')
+      duration: 1.4,
+      ease: 'power4.inOut',
+      stagger: 0.02
+    }, '+=0.4')
 
-    // Phase 3: Fade in hero text
+    // Phase 3: Fade in hero text (overlapping with card animation)
     masterTimeline.to(heroTextRef.value, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
-      ease: 'power2.out'
-    }, '-=0.5')
+      duration: 1,
+      ease: 'power3.out'
+    }, '-=0.8')
+
+    // Phase 4: Smooth fade to final carousel
+    masterTimeline.to(montageCards, {
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.inOut'
+    }, '+=0.2')
 
   }, heroRef.value)
 })
@@ -197,43 +204,45 @@ onUnmounted(() => {
           </p>
         </div>
 
-        <!-- Services Carousel with side spacing -->
-        <div class="px-8 md:px-16">
-          <CarouselComponent :items="services" :visible-count="5" item-width="280px">
-            <template #item="{ item }">
-              <article
-                class="group cursor-pointer h-full px-3"
-                @click="scrollToSection(item.id)"
-              >
-                <div
-                  class="aspect-[3/4] rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl"
-                  style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
+        <!-- Services Carousel (matches Serviciile Noastre section) -->
+        <div class="w-full">
+          <div class="px-8 md:px-16">
+            <CarouselComponent :items="services" :visible-count="5" item-width="280px">
+              <template #item="{ item }">
+                <article
+                  class="group cursor-pointer h-full px-3"
+                  @click="scrollToSection(item.id)"
                 >
-                  <div class="w-full h-full flex items-center justify-center relative">
-                    <span
-                      class="font-heading text-h4 text-center px-4"
-                      style="color: var(--color-text-main)"
-                    >
-                      {{ item.title }}
-                    </span>
-
-                    <!-- Hover Overlay -->
-                    <div
-                      class="absolute inset-0 opacity-0 group-hover:opacity-95 transition-opacity duration-300 flex items-center justify-center p-6"
-                      style="background-color: var(--color-accent-green)"
-                    >
-                      <p
-                        class="font-body text-p1 text-center font-semibold"
-                        style="color: var(--color-bg-main)"
+                  <div
+                    class="aspect-[3/4] rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl"
+                    style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
+                  >
+                    <div class="w-full h-full flex items-center justify-center relative">
+                      <span
+                        class="font-heading text-h4 text-center px-4"
+                        style="color: var(--color-text-main)"
                       >
                         {{ item.title }}
-                      </p>
+                      </span>
+
+                      <!-- Hover Overlay -->
+                      <div
+                        class="absolute inset-0 opacity-0 group-hover:opacity-95 transition-opacity duration-300 flex items-center justify-center p-6"
+                        style="background-color: var(--color-accent-green)"
+                      >
+                        <p
+                          class="font-body text-p1 text-center font-semibold"
+                          style="color: var(--color-bg-main)"
+                        >
+                          {{ item.title }}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </article>
-            </template>
-          </CarouselComponent>
+                </article>
+              </template>
+            </CarouselComponent>
+          </div>
         </div>
       </div>
     </div>

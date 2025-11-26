@@ -23,7 +23,26 @@ const differentiators = [
   <div>
     <TheNavbar />
 
-    <main class="pt-20">
+    <main class="pt-24">
+      <!-- About Hero -->
+      <section
+        class="mx-auto max-w-page px-4 py-16"
+        style="background-color: var(--color-accent-soft)"
+      >
+        <h1
+          class="font-heading text-h1 md:text-[60px] text-center mb-6"
+          style="color: var(--color-text-main)"
+        >
+          Despre Noi
+        </h1>
+        <p
+          class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
+          style="color: var(--color-text-muted)"
+        >
+          Povestea noastră și valorile care ne definesc
+        </p>
+      </section>
+
       <!-- Story Section -->
       <StorySection
         title="Povestea Noastră"
