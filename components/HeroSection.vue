@@ -47,9 +47,19 @@ onMounted(() => {
         // Unlock scroll when animation complete
         document.body.style.overflow = ''
 
-        // Show the carousel container
-        gsap.set(carouselContainerRef.value, { display: 'block' })
-        gsap.set(montageContainerRef.value, { display: 'none' })
+        // Transition to carousel
+        gsap.to(montageContainerRef.value, {
+          opacity: 0,
+          duration: 0.5,
+          onComplete: () => {
+            gsap.set(montageContainerRef.value, { display: 'none' })
+            gsap.set(carouselContainerRef.value, { display: 'block', opacity: 0 })
+            gsap.to(carouselContainerRef.value, {
+              opacity: 1,
+              duration: 0.6
+            })
+          }
+        })
       }
     })
 
@@ -57,48 +67,46 @@ onMounted(() => {
     gsap.set(heroTextRef.value, { opacity: 0, y: 50 })
     gsap.set(carouselContainerRef.value, { display: 'none' })
 
-    // Phase 1: Montage - Cards appear one by one from random positions (2x slower)
+    // Phase 1: Cards slide in from right to left, centered vertically
     montageCards.forEach((card, index) => {
-      // Random starting position
-      const startX = gsap.utils.random(-60, 60, 1) // vw units
-      const startY = gsap.utils.random(-40, 40, 1) // vh units
-      const startRotation = gsap.utils.random(-20, 20, 1)
-
       gsap.set(card, {
-        x: `${startX}vw`,
-        y: `${startY}vh`,
-        rotation: startRotation,
-        scale: 0,
+        x: '120vw', // Start off-screen to the right
+        y: 0, // Centered vertically
+        rotation: 0,
+        scale: 1,
         opacity: 0
       })
 
-      // Animate each card appearing (stagger 0.6s = 2x slower)
+      // Cards slide in from right, faster timing (0.35s stagger)
       masterTimeline.to(card, {
-        scale: 1,
+        x: 0, // Slide to center
         opacity: 1,
-        duration: 0.8,
-        ease: 'back.out(1.7)'
-      }, index * 0.6)
+        duration: 0.6,
+        ease: 'power2.out'
+      }, index * 0.35)
     })
 
-    // Phase 2: Reorganize - Move all cards to center and prepare for carousel
+    // Phase 2: Cards scale down and arrange in carousel formation
     masterTimeline.to(montageCards, {
-      x: 0,
-      y: 0,
-      rotation: 0,
-      scale: 1,
-      duration: 1.2,
+      scale: 0.3, // Scale down to carousel size
+      x: (index) => {
+        // Arrange horizontally like a carousel
+        const centerOffset = -((montageCards.length - 1) * 15) / 2
+        return centerOffset + (index * 15) + 'vw'
+      },
+      y: '20vh', // Move down slightly
+      duration: 1,
       ease: 'power3.inOut',
-      stagger: 0.05
-    }, '+=0.5')
+      stagger: 0.03
+    }, '+=0.3')
 
-    // Phase 3: Fade in text
+    // Phase 3: Fade in hero text
     masterTimeline.to(heroTextRef.value, {
       opacity: 1,
       y: 0,
       duration: 0.8,
       ease: 'power2.out'
-    }, '-=0.6')
+    }, '-=0.5')
 
   }, heroRef.value)
 })

@@ -102,53 +102,37 @@ const navigateToService = (serviceId) => {
     </div>
 
     <!-- Services Carousel -->
-    <div class="mx-auto max-w-page px-6 md:px-8">
-      <CarouselComponent :items="services" :visible-count="4" item-width="320px">
+    <div class="px-8 md:px-16">
+      <CarouselComponent :items="services" :visible-count="5" item-width="280px">
         <template #item="{ item }">
           <article
-            class="group cursor-pointer h-full"
+            class="group cursor-pointer h-full px-3"
             @click="navigateToService(item.id)"
           >
             <div
-              class="h-full p-6 rounded-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg flex flex-col"
+              class="aspect-[3/4] rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl"
               style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
             >
-              <!-- Service Image Placeholder -->
-              <div
-                class="aspect-[4/3] rounded-lg mb-4 overflow-hidden relative"
-                style="background-color: var(--color-bg-main)"
-              >
-                <div class="w-full h-full flex items-center justify-center">
-                  <span
-                    class="font-heading text-h6 text-center px-4"
-                    style="color: var(--color-text-muted)"
-                  >
-                    {{ item.title }}
-                  </span>
-                </div>
+              <div class="w-full h-full flex items-center justify-center relative">
+                <span
+                  class="font-heading text-h4 text-center px-4"
+                  style="color: var(--color-text-main)"
+                >
+                  {{ item.title }}
+                </span>
 
                 <!-- Hover Overlay -->
                 <div
-                  class="absolute inset-0 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center"
+                  class="absolute inset-0 opacity-0 group-hover:opacity-95 transition-opacity duration-300 flex items-center justify-center p-6"
                   style="background-color: var(--color-accent-green)"
                 >
-                  <span
-                    class="font-body text-p1 font-semibold"
+                  <p
+                    class="font-body text-p1 text-center font-semibold"
                     style="color: var(--color-bg-main)"
                   >
-                    Vezi Detalii →
-                  </span>
+                    {{ item.title }}
+                  </p>
                 </div>
-              </div>
-
-              <!-- Service Content -->
-              <div class="flex-1 flex flex-col">
-                <h3 class="font-heading text-h5 mb-3" style="color: var(--color-text-main)">
-                  {{ item.title }}
-                </h3>
-                <p class="font-body text-p2 flex-1" style="color: var(--color-text-muted)">
-                  {{ item.description }}
-                </p>
               </div>
             </div>
           </article>
