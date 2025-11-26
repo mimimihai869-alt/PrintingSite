@@ -37,40 +37,29 @@ onMounted(() => {
     // Hide hero text initially
     gsap.set(heroTextRef.value, { opacity: 0, y: 30 })
 
-    // Phase 1: Montage - images appear one by one
+    // Phase 1: Montage - images appear one by one (2x slower)
     const montageTimeline = gsap.timeline({
       onComplete: () => {
-        // Phase 2: Reorganize to horizontal row
+        // Phase 2: Reorganize to horizontal row under navbar and title
+        const cardWidth = 200
+        const gap = 20
+        const totalWidth = images.length * (cardWidth + gap)
+        const navbarHeight = 80 // navbar + padding
+        const titleHeight = 200 // approximate space for title
+        const finalY = navbarHeight + titleHeight
+
         gsap.to(images, {
           x: (index) => {
-            const cardWidth = 200
-            const gap = 20
-            const totalWidth = images.length * (cardWidth + gap)
             const startX = -totalWidth / 2 + cardWidth / 2
             return startX + index * (cardWidth + gap)
           },
-          y: window.innerHeight - 250,
-          scale: 0.8,
-          duration: 1,
+          y: finalY,
+          scale: 0.35, // Scale down from 60vw to ~200px
+          duration: 1.2,
           ease: 'power2.inOut',
           onComplete: () => {
             // Phase 3: Enable scroll
             document.body.style.overflow = ''
-
-            // Set up scroll-triggered animations
-            ScrollTrigger.create({
-              trigger: heroRef.value,
-              start: 'top top',
-              end: '+=300',
-              scrub: 1,
-              onUpdate: (self) => {
-                // Move images up as user scrolls
-                gsap.to(images, {
-                  y: window.innerHeight - 250 - (self.progress * 400),
-                  ease: 'none'
-                })
-              }
-            })
 
             // Reveal hero text on scroll
             ScrollTrigger.create({
@@ -90,14 +79,14 @@ onMounted(() => {
       }
     })
 
-    // Stagger the montage appearance
+    // Stagger the montage appearance - 2x slower
     images.forEach((image, index) => {
       montageTimeline.to(image, {
         opacity: 1,
         scale: 1,
-        duration: 0.4,
+        duration: 0.8, // 2x slower
         ease: 'power2.out'
-      }, index * 0.3)
+      }, index * 0.6) // 2x slower stagger
     })
   }, heroRef.value)
 })
@@ -142,8 +131,8 @@ onUnmounted(() => {
       <article
         v-for="(service, index) in services"
         :key="service.id"
-        class="hero-image group absolute w-[250px] h-[350px] cursor-pointer"
-        style="opacity: 0"
+        class="hero-image group absolute cursor-pointer"
+        style="opacity: 0; width: 60vw; height: 70vh"
         @click="scrollToSection(service.id)"
       >
         <!-- Image Placeholder (replace with real images) -->
