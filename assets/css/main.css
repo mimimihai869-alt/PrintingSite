@@ -15,6 +15,10 @@
   /* Accents */
   --color-accent-green: #7A8F74;
   --color-accent-soft: #D2E4C7;
+
+  /* Button colors */
+  --color-6: #7A8F74;
+  --color-cream: #FAF7F3;
 }
 
 @layer base {
