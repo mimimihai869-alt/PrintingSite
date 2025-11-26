@@ -35,6 +35,11 @@ const scrollToSection = (sectionId) => {
 }
 
 onMounted(() => {
+  // ============================================================================
+  // WARNING: DO NOT MODIFY THIS ANIMATION WITHOUT EXPLICIT USER PERMISSION
+  // This animation timing and behavior is locked and should remain unchanged
+  // ============================================================================
+
   // Check if animation has already played this session
   const hasAnimationPlayed = sessionStorage.getItem('heroAnimationPlayed')
 
@@ -82,6 +87,7 @@ onMounted(() => {
     gsap.set(heroTextRef.value, { opacity: 0, y: 50 })
     gsap.set(carouselContainerRef.value, { display: 'none' })
 
+    // ========== ANIMATION PHASES - DO NOT MODIFY ==========
     // Phase 1: Cards slide in from right to left, centered vertically
     montageCards.forEach((card, index) => {
       gsap.set(card, {
