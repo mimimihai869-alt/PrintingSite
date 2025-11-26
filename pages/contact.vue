@@ -1,13 +1,20 @@
 <script setup>
-import { businessInfo, getLocalBusinessSchema } from '~/utils/businessInfo'
+import { businessInfo, getLocalBusinessSchema, getContactMethods } from '~/utils/businessInfo'
 
-// Add LocalBusiness structured data
+const contactMethods = getContactMethods()
+const primaryContacts = contactMethods.filter(m => m.primary)
+const socialContacts = contactMethods.filter(m => !m.primary)
+
+// Add LocalBusiness structured data for Google ranking
 useHead({
   title: `Contact - ${businessInfo.name}`,
+  meta: [
+    { name: 'description', content: `Contactează ${businessInfo.name} pentru servicii profesionale de printare în ${businessInfo.address.city}. Program ${businessInfo.openingHours[0].displayRO}` }
+  ],
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: JSON.stringify(getLocalBusinessSchema())
+      children: JSON.stringify(getLocalBusinessSchema())
     }
   ]
 })
@@ -46,47 +53,29 @@ useHead({
               Detalii Contact
             </h2>
 
-            <div class="space-y-6">
-              <!-- Phone -->
-              <div class="flex items-start gap-4">
+            <div class="space-y-6 mb-8">
+              <!-- Primary Contact Methods (Phone, Email) -->
+              <div
+                v-for="contact in primaryContacts"
+                :key="contact.type"
+                class="flex items-start gap-4"
+              >
                 <div
                   class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
                   style="background-color: var(--color-accent-soft)"
                 >
-                  <span class="text-2xl">📞</span>
+                  <span class="text-2xl">{{ contact.icon }}</span>
                 </div>
                 <div>
                   <h3 class="font-heading text-h6 mb-2" style="color: var(--color-text-main)">
-                    Telefon
+                    {{ contact.label }}
                   </h3>
                   <a
-                    :href="`tel:${businessInfo.phone}`"
+                    :href="contact.href"
                     class="font-body text-p1 hover:underline"
                     style="color: var(--color-accent-green)"
                   >
-                    {{ businessInfo.phone }}
-                  </a>
-                </div>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-start gap-4">
-                <div
-                  class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                  style="background-color: var(--color-accent-soft)"
-                >
-                  <span class="text-2xl">✉️</span>
-                </div>
-                <div>
-                  <h3 class="font-heading text-h6 mb-2" style="color: var(--color-text-main)">
-                    Email
-                  </h3>
-                  <a
-                    :href="`mailto:${businessInfo.email}`"
-                    class="font-body text-p1 hover:underline"
-                    style="color: var(--color-accent-green)"
-                  >
-                    {{ businessInfo.email }}
+                    {{ contact.value }}
                   </a>
                 </div>
               </div>
@@ -141,6 +130,37 @@ useHead({
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- Social Media & Other Contact Methods -->
+            <div
+              class="p-6 rounded-lg"
+              style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)"
+            >
+              <h3 class="font-heading text-h5 mb-4" style="color: var(--color-text-main)">
+                Ne găsești și pe:
+              </h3>
+              <div class="grid grid-cols-2 gap-4">
+                <a
+                  v-for="contact in socialContacts"
+                  :key="contact.type"
+                  :href="contact.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:scale-105"
+                  style="background-color: var(--color-bg-main)"
+                >
+                  <span class="text-2xl">{{ contact.icon }}</span>
+                  <div>
+                    <p class="font-body text-p2 font-semibold" style="color: var(--color-text-main)">
+                      {{ contact.label }}
+                    </p>
+                    <p class="font-body text-sm" style="color: var(--color-text-muted)">
+                      {{ contact.value }}
+                    </p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -254,12 +274,60 @@ useHead({
         </div>
       </section>
 
-      <!-- Map Placeholder -->
-      <section class="w-full h-96 mt-16" style="background-color: var(--color-bg-alt)">
-        <div class="w-full h-full flex items-center justify-center">
-          <p class="font-body text-p1" style="color: var(--color-text-muted)">
-            [Google Maps Embed - Va fi adăugat mai târziu]
-          </p>
+      <!-- Google Maps Section -->
+      <section class="w-full mt-16">
+        <div class="mx-auto max-w-page px-6 md:px-8 mb-6">
+          <h2 class="font-heading text-h3 text-center" style="color: var(--color-text-main)">
+            Locația Noastră
+          </h2>
+        </div>
+
+        <!-- Map Container -->
+        <div class="w-full h-96 relative" style="background-color: var(--color-bg-alt)">
+          <!-- Replace this with actual Google Maps embed -->
+          <!-- Example:
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..."
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          -->
+          <div class="w-full h-full flex flex-col items-center justify-center p-8">
+            <span class="text-6xl mb-4">🗺️</span>
+            <p class="font-heading text-h5 text-center mb-2" style="color: var(--color-text-main)">
+              Hartă Google Maps
+            </p>
+            <p class="font-body text-p2 text-center max-w-md mb-4" style="color: var(--color-text-muted)">
+              Pentru a adăuga harta reală, înlocuiește acest placeholder cu un embed Google Maps
+            </p>
+            <a
+              :href="businessInfo.googleMapsUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block"
+            >
+              <BaseButton
+                label="Deschide în Google Maps"
+                size="medium"
+              />
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Area Info -->
+        <div class="mx-auto max-w-page px-6 md:px-8 mt-8">
+          <div
+            class="p-6 rounded-lg text-center"
+            style="background-color: var(--color-accent-soft)"
+          >
+            <p class="font-body text-p1 mb-2" style="color: var(--color-text-main)">
+              <strong>Zone de livrare:</strong> {{ businessInfo.serviceArea.primary }} și {{ businessInfo.serviceArea.secondary.join(', ') }}
+            </p>
+          </div>
         </div>
       </section>
     </main>

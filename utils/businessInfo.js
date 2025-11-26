@@ -59,11 +59,12 @@ export const businessInfo = {
     }
   ],
 
-  // Social Media (optional - add when available)
+  // Social Media & Online Presence (for Google ranking)
   social: {
-    facebook: '',
-    instagram: '',
-    linkedin: ''
+    facebook: 'https://facebook.com/printco',
+    instagram: 'https://instagram.com/printco',
+    linkedin: 'https://linkedin.com/company/printco',
+    whatsapp: '+40 123 456 789' // WhatsApp for direct messaging
   },
 
   // Service Area
@@ -75,10 +76,11 @@ export const businessInfo = {
 
 /**
  * Generate LocalBusiness JSON-LD structured data
+ * Enhanced for 2025 Google ranking with social profiles
  * Use with Nuxt's useHead() composable
  */
 export function getLocalBusinessSchema() {
-  return {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: businessInfo.name,
@@ -86,6 +88,8 @@ export function getLocalBusinessSchema() {
     url: businessInfo.website,
     telephone: businessInfo.phone,
     email: businessInfo.email,
+    image: `${businessInfo.website}/og-image.jpg`, // Add when available
+    priceRange: '$$', // Moderate pricing
     address: {
       '@type': 'PostalAddress',
       streetAddress: businessInfo.address.street,
@@ -118,4 +122,73 @@ export function getLocalBusinessSchema() {
       }))
     ]
   }
+
+  // Add social media profiles (Google uses these for ranking)
+  const socialProfiles = []
+  if (businessInfo.social.facebook) socialProfiles.push(businessInfo.social.facebook)
+  if (businessInfo.social.instagram) socialProfiles.push(businessInfo.social.instagram)
+  if (businessInfo.social.linkedin) socialProfiles.push(businessInfo.social.linkedin)
+
+  if (socialProfiles.length > 0) {
+    schema.sameAs = socialProfiles
+  }
+
+  return schema
+}
+
+/**
+ * Get contact methods for display
+ * Returns array of contact options with icons and labels
+ */
+export function getContactMethods() {
+  return [
+    {
+      type: 'phone',
+      label: 'Telefon',
+      value: businessInfo.phone,
+      href: `tel:${businessInfo.phone}`,
+      icon: '📞',
+      primary: true
+    },
+    {
+      type: 'email',
+      label: 'Email',
+      value: businessInfo.email,
+      href: `mailto:${businessInfo.email}`,
+      icon: '✉️',
+      primary: true
+    },
+    {
+      type: 'whatsapp',
+      label: 'WhatsApp',
+      value: businessInfo.social.whatsapp,
+      href: `https://wa.me/${businessInfo.social.whatsapp.replace(/[^0-9]/g, '')}`,
+      icon: '💬',
+      primary: false
+    },
+    {
+      type: 'facebook',
+      label: 'Facebook',
+      value: '@printco',
+      href: businessInfo.social.facebook,
+      icon: '👤',
+      primary: false
+    },
+    {
+      type: 'instagram',
+      label: 'Instagram',
+      value: '@printco',
+      href: businessInfo.social.instagram,
+      icon: '📷',
+      primary: false
+    },
+    {
+      type: 'linkedin',
+      label: 'LinkedIn',
+      value: 'PrintCo',
+      href: businessInfo.social.linkedin,
+      icon: '💼',
+      primary: false
+    }
+  ]
 }
