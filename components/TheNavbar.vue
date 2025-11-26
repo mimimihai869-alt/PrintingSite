@@ -61,28 +61,55 @@ onUnmounted(() => {
   >
     <div class="mx-auto max-w-page">
       <!-- Desktop Navigation -->
-      <ul class="hidden md:flex items-center justify-center gap-8 lg:gap-16 font-body text-p1">
+      <ul class="hidden md:flex items-center justify-center gap-6 lg:gap-10 font-body text-p1">
         <li>
-          <a
-            href="#services"
+          <NuxtLink
+            to="/"
+            class="nav-link"
+            style="color: var(--color-text-main)"
+          >
+            Acasă
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/servicii"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
             Servicii
-          </a>
+          </NuxtLink>
         </li>
         <li>
-          <a
-            href="#about"
+          <NuxtLink
+            to="/despre"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
-            Despre noi
-          </a>
+            Despre Noi
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/cerinte-tehnice"
+            class="nav-link"
+            style="color: var(--color-text-main)"
+          >
+            Cerințe
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/faq"
+            class="nav-link"
+            style="color: var(--color-text-main)"
+          >
+            FAQ
+          </NuxtLink>
         </li>
         <li>
           <a
-            href="#contact"
+            href="/#contact"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
@@ -134,31 +161,61 @@ onUnmounted(() => {
         <Transition name="mobile-menu">
           <ul
             v-if="mobileMenuOpen"
-            class="mt-4 flex flex-col items-center gap-4 font-body text-p1 pb-4"
+            class="mt-4 flex flex-col items-center gap-3 font-body text-p1 pb-4"
           >
             <li>
-              <a
-                href="#services"
+              <NuxtLink
+                to="/"
+                class="nav-link block py-2"
+                style="color: var(--color-text-main)"
+                @click="mobileMenuOpen = false"
+              >
+                Acasă
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/servicii"
                 class="nav-link block py-2"
                 style="color: var(--color-text-main)"
                 @click="mobileMenuOpen = false"
               >
                 Servicii
-              </a>
+              </NuxtLink>
             </li>
             <li>
-              <a
-                href="#about"
+              <NuxtLink
+                to="/despre"
                 class="nav-link block py-2"
                 style="color: var(--color-text-main)"
                 @click="mobileMenuOpen = false"
               >
-                Despre noi
-              </a>
+                Despre Noi
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/cerinte-tehnice"
+                class="nav-link block py-2"
+                style="color: var(--color-text-main)"
+                @click="mobileMenuOpen = false"
+              >
+                Cerințe Tehnice
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/faq"
+                class="nav-link block py-2"
+                style="color: var(--color-text-main)"
+                @click="mobileMenuOpen = false"
+              >
+                FAQ
+              </NuxtLink>
             </li>
             <li>
               <a
-                href="#contact"
+                href="/#contact"
                 class="nav-link block py-2"
                 style="color: var(--color-text-main)"
                 @click="mobileMenuOpen = false"
