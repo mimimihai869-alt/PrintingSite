@@ -35,6 +35,18 @@ const scrollToSection = (sectionId) => {
 }
 
 onMounted(() => {
+  // Check if animation has already played this session
+  const hasAnimationPlayed = sessionStorage.getItem('heroAnimationPlayed')
+
+  if (hasAnimationPlayed === 'true') {
+    // Skip animation, show final state immediately
+    gsap.set(montageContainerRef.value, { display: 'none' })
+    gsap.set(carouselContainerRef.value, { display: 'block', opacity: 1 })
+    gsap.set(heroTextRef.value, { opacity: 1, y: 0 })
+    document.body.style.overflow = ''
+    return
+  }
+
   // Lock scroll initially
   document.body.style.overflow = 'hidden'
 
@@ -46,6 +58,9 @@ onMounted(() => {
       onComplete: () => {
         // Unlock scroll when animation complete
         document.body.style.overflow = ''
+
+        // Mark animation as played for this session
+        sessionStorage.setItem('heroAnimationPlayed', 'true')
 
         // Transition to carousel
         gsap.to(montageContainerRef.value, {
