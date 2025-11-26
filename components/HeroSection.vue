@@ -34,57 +34,84 @@ onMounted(() => {
   ctx = gsap.context(() => {
     const images = gsap.utils.toArray('.hero-image')
 
-    // Hide hero text initially
+    // Hide hero text and navbar initially
     gsap.set(heroTextRef.value, { opacity: 0, y: 30 })
+    gsap.set('.navbar', { y: -100, opacity: 0 })
 
-    // Phase 1: Montage - images appear one by one (2x slower)
+    // Set initial state for images - scattered positions with rotation
+    images.forEach((image, index) => {
+      const angle = (index / images.length) * 360
+      const radius = 300
+      const randomX = Math.cos(angle * Math.PI / 180) * radius
+      const randomY = Math.sin(angle * Math.PI / 180) * radius
+      const randomRotation = (Math.random() - 0.5) * 30
+
+      gsap.set(image, {
+        x: randomX,
+        y: randomY,
+        rotation: randomRotation,
+        opacity: 0,
+        scale: 0.5
+      })
+    })
+
+    // Phase 1: Montage - images appear with movement and stack in center
     const montageTimeline = gsap.timeline({
       onComplete: () => {
-        // Phase 2: Reorganize to horizontal row under navbar and title
-        const cardWidth = 200
-        const gap = 20
-        const totalWidth = images.length * (cardWidth + gap)
-        const navbarHeight = 80 // navbar + padding
-        const titleHeight = 200 // approximate space for title
+        // Phase 2: Reorganize to horizontal row
+        // Calculate card size to fit viewport
+        const gap = 12 // 8-16px gap
+        const availableWidth = window.innerWidth * 0.9 // 90% of viewport
+        const cardWidth = (availableWidth - (gap * (images.length - 1))) / images.length
+        const cardHeight = cardWidth * 1.4 // Maintain aspect ratio (similar to 60vw x 70vh ratio)
+        const navbarHeight = 80
+        const titleHeight = 180
         const finalY = navbarHeight + titleHeight
 
+        // Show navbar and title as images start arranging
+        gsap.to('.navbar', {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out'
+        })
+
+        gsap.to(heroTextRef.value, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        })
+
+        // Reorganize images into row
         gsap.to(images, {
           x: (index) => {
-            const startX = -totalWidth / 2 + cardWidth / 2
-            return startX + index * (cardWidth + gap)
+            const totalWidth = (cardWidth * images.length) + (gap * (images.length - 1))
+            const startX = -totalWidth / 2 + (cardWidth / 2)
+            return startX + (index * (cardWidth + gap))
           },
           y: finalY,
-          scale: 0.35, // Scale down from 60vw to ~200px
+          rotation: 0,
+          scale: cardWidth / (window.innerWidth * 0.6), // Scale to maintain aspect ratio
           duration: 1.2,
           ease: 'power2.inOut',
           onComplete: () => {
             // Phase 3: Enable scroll
             document.body.style.overflow = ''
-
-            // Reveal hero text on scroll
-            ScrollTrigger.create({
-              trigger: heroRef.value,
-              start: 'top top',
-              onEnter: () => {
-                gsap.to(heroTextRef.value, {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.8,
-                  ease: 'power2.out'
-                })
-              }
-            })
           }
         })
       }
     })
 
-    // Stagger the montage appearance - 2x slower
+    // Animate images one by one - with movement toward center
     images.forEach((image, index) => {
       montageTimeline.to(image, {
+        x: 0,
+        y: 0,
+        rotation: 0,
         opacity: 1,
         scale: 1,
-        duration: 0.8, // 2x slower
+        duration: 0.8,
         ease: 'power2.out'
       }, index * 0.6) // 2x slower stagger
     })
@@ -104,22 +131,22 @@ onUnmounted(() => {
     class="relative min-h-screen"
     style="background-color: var(--color-bg-main)"
   >
-    <!-- Hero Text Content (hidden initially, revealed on scroll) -->
+    <!-- Hero Text Content (hidden initially, revealed when reorganizing) -->
     <div
       ref="heroTextRef"
-      class="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none px-4"
+      class="absolute top-20 left-0 right-0 flex flex-col items-center z-10 pointer-events-none px-4"
     >
       <h1
-        class="font-heading text-h1 md:text-[60px] text-center mb-4"
+        class="font-heading text-h1 md:text-[60px] text-center mb-3"
         style="color: var(--color-text-main)"
       >
-        Professional Print Services
+        Printăm orice ai nevoie — rapid, calitativ, profesionist
       </h1>
       <p
-        class="font-body text-p1 md:text-[18px] text-center max-w-2xl"
+        class="font-body text-p1 md:text-[18px] text-center max-w-3xl"
         style="color: var(--color-text-muted)"
       >
-        From business cards to large format printing — we deliver quality results, fast
+        De la cărți de vizită la bannere outdoor — te ajutăm să arăți impecabil
       </p>
     </div>
 
@@ -168,5 +195,10 @@ onUnmounted(() => {
 <style scoped>
 .hero-image {
   will-change: transform, opacity;
+}
+
+.hero-image > div {
+  border-radius: 4px;
+  overflow: hidden;
 }
 </style>
