@@ -133,16 +133,16 @@ onUnmounted(() => {
     <!-- Hero Text Content (hidden initially, revealed when reorganizing) -->
     <div
       ref="heroTextRef"
-      class="absolute top-20 left-0 right-0 flex flex-col items-center z-10 pointer-events-none px-4"
+      class="absolute top-32 md:top-40 left-0 right-0 flex flex-col items-center z-10 pointer-events-none px-4"
     >
       <h1
-        class="font-heading text-h1 md:text-[60px] text-center mb-3"
+        class="font-heading text-h1 md:text-[60px] text-center mb-6"
         style="color: var(--color-text-main)"
       >
         Printăm orice ai nevoie — rapid, calitativ, profesionist
       </h1>
       <p
-        class="font-body text-p1 md:text-[18px] text-center max-w-3xl"
+        class="font-body text-p1 md:text-[18px] text-center max-w-3xl mb-16"
         style="color: var(--color-text-muted)"
       >
         De la cărți de vizită la bannere outdoor — te ajutăm să arăți impecabil
