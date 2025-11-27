@@ -96,12 +96,12 @@ const navigateToService = (serviceId) => {
       </p>
     </div>
 
-    <!-- Services Carousel -->
-    <div class="px-4 md:px-12 lg:px-16">
+    <!-- Services Carousel with extra padding to prevent clipping on hover -->
+    <div class="px-4 md:px-12 lg:px-16 py-8">
       <CarouselComponent :items="services" :visible-count="5" item-width="320px">
         <template #item="{ item }">
           <article
-            class="group cursor-pointer h-full px-4"
+            class="group cursor-pointer h-full px-6 py-4"
             @click="navigateToService(item.id)"
           >
             <ImageCard
