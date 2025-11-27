@@ -2,10 +2,12 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 // Slide data structure - 10 services as slides
+// TEMPORARY: Using Unsplash placeholder images for testing
+// Replace with real images in public/images/hero/ folder
 const slides = [
   {
     id: 'business-cards',
-    image: '/images/hero/business-cards.jpg',
+    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'CĂRȚI DE VIZITĂ',
     description: 'Print de calitate superioară pe diverse materiale',
@@ -14,7 +16,7 @@ const slides = [
   },
   {
     id: 'flyers',
-    image: '/images/hero/flyers.jpg',
+    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'FLYERE & PLIANTE',
     description: 'De la A6 la A3, diverse finisaje',
@@ -23,7 +25,7 @@ const slides = [
   },
   {
     id: 'brochures',
-    image: '/images/hero/brochures.jpg',
+    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'BROȘURI & CATALOAGE',
     description: 'Legătorie profesională și finisare premium',
@@ -32,7 +34,7 @@ const slides = [
   },
   {
     id: 'posters',
-    image: '/images/hero/posters.jpg',
+    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'POSTERE & AFIȘE',
     description: 'Format mare până la A0+',
@@ -41,7 +43,7 @@ const slides = [
   },
   {
     id: 'banners',
-    image: '/images/hero/banners.jpg',
+    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'BANNERE OUTDOOR',
     description: 'Rezistente pentru exterior',
@@ -50,7 +52,7 @@ const slides = [
   },
   {
     id: 'cad-plotting',
-    image: '/images/hero/cad.jpg',
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'PLOTARE CAD',
     description: 'Precizie maximă pentru proiecte tehnice',
@@ -59,7 +61,7 @@ const slides = [
   },
   {
     id: 'stickers',
-    image: '/images/hero/stickers.jpg',
+    image: 'https://images.unsplash.com/photo-1533003021-f1642856f0a9?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'AUTOCOLANTE & ETICHETE',
     description: 'Interior și exterior',
@@ -68,7 +70,7 @@ const slides = [
   },
   {
     id: 'rollups',
-    image: '/images/hero/rollup.jpg',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'ROLL-UP & EXPUNERE',
     description: 'Sisteme portabile pentru evenimente',
@@ -77,7 +79,7 @@ const slides = [
   },
   {
     id: 'canvas',
-    image: '/images/hero/canvas.jpg',
+    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'TABLOURI CANVAS',
     description: 'Print pe pânză pentru decorațiuni premium',
@@ -86,7 +88,7 @@ const slides = [
   },
   {
     id: 'packaging',
-    image: '/images/hero/packaging.jpg',
+    image: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=1920&h=1080&fit=crop',
     label: 'Servicii',
     title: 'AMBALAJE PERSONALIZATE',
     description: 'Cutii și soluții cu design personalizat',
