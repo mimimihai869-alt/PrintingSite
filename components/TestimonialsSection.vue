@@ -66,11 +66,11 @@ onUnmounted(() => {
       </h2>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <article
+        <PaperCard
           v-for="testimonial in testimonials"
           :key="testimonial.id"
-          class="testimonial-card p-8 rounded-lg border-l-4"
-          style="background-color: var(--color-bg-alt); border-left-color: var(--color-accent-green)"
+          variant="accent-left"
+          class="testimonial-card"
         >
           <p
             class="font-body text-p1 mb-6 italic"
@@ -86,7 +86,7 @@ onUnmounted(() => {
               {{ testimonial.company }}
             </p>
           </div>
-        </article>
+        </PaperCard>
       </div>
     </div>
   </section>

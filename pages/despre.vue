@@ -17,6 +17,25 @@ const differentiators = [
     description: 'Peste 10 ani în domeniu cu mii de proiecte realizate pentru clienți mulțumiți.'
   }
 ]
+
+const values = [
+  {
+    title: 'Calitate Fără Compromisuri',
+    description: 'Controlul calității la fiecare etapă, de la primirea fișierului până la livrarea finală. Garantăm 100% satisfacție sau refacem gratuit.'
+  },
+  {
+    title: 'Transparență Totală',
+    description: 'Prețuri clare, termene realiste, comunicare constantă. Știi exact ce primești, când și la ce cost.'
+  },
+  {
+    title: 'Inovație Continuă',
+    description: 'Investim constant în tehnologie și training pentru a oferi cele mai bune soluții de pe piață.'
+  },
+  {
+    title: 'Relații Pe Termen Lung',
+    description: 'Nu căutăm tranzacții unice, ci parteneri pe termen lung. Succesul tău este succesul nostru.'
+  }
+]
 </script>
 
 <template>
@@ -88,21 +107,19 @@ const differentiators = [
               De Ce PrintCo?
             </h2>
             <div class="grid md:grid-cols-3 gap-8">
-              <article
+              <PaperCard
                 v-for="(card, index) in differentiators"
                 :key="index"
-                class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative overflow-hidden"
-                style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
+                variant="default"
+                class="cursor-pointer"
               >
-                <!-- Accent corner -->
-                <div class="absolute top-0 right-0 w-16 h-16 opacity-20" style="background: linear-gradient(135deg, var(--color-accent-green) 0%, transparent 70%);"></div>
                 <h3 class="font-heading text-h4 mb-4" style="color: var(--color-accent-green)">
                   {{ card.title }}
                 </h3>
                 <p class="font-body text-p1" style="color: var(--color-text-muted)">
                   {{ card.description }}
                 </p>
-              </article>
+              </PaperCard>
             </div>
           </div>
         </div>
@@ -169,47 +186,18 @@ const differentiators = [
             </h2>
 
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <!-- Subtle glow on hover -->
-                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
-                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
-                  Calitate Fără Compromisuri
-                </h3>
-                <p class="font-body text-p1 relative z-10" style="color: var(--color-text-muted)">
-                  Controlul calității la fiecare etapă, de la primirea fișierului până la livrarea finală.
-                  Garantăm 100% satisfacție sau refacem gratuit.
-                </p>
-              </div>
-
-              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
-                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
-                  Transparență Totală
+              <PaperCard
+                v-for="(value, index) in values"
+                :key="index"
+                variant="accent-left"
+              >
+                <h3 class="font-heading text-h5 mb-3" style="color: var(--color-text-main)">
+                  {{ value.title }}
                 </h3>
                 <p class="font-body text-p1" style="color: var(--color-text-muted)">
-                  Prețuri clare, termene realiste, comunicare constantă. Știi exact ce primești, când și la ce cost.
+                  {{ value.description }}
                 </p>
-              </div>
-
-              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
-                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
-                  Inovație Continuă
-                </h3>
-                <p class="font-body text-p1" style="color: var(--color-text-muted)">
-                  Investim constant în tehnologie și training pentru a oferi cele mai bune soluții de pe piață.
-                </p>
-              </div>
-
-              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
-                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
-                  Relații Pe Termen Lung
-                </h3>
-                <p class="font-body text-p1" style="color: var(--color-text-muted)">
-                  Nu căutăm tranzacții unice, ci parteneri pe termen lung. Succesul tău este succesul nostru.
-                </p>
-              </div>
+              </PaperCard>
             </div>
           </div>
         </div>
