@@ -42,8 +42,8 @@ onUnmounted(() => {
       Despre Noi
     </h2>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <article class="about-item text-center p-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+      <article class="about-item text-center p-6 w-full max-w-sm">
         <h3 class="font-heading text-h4 mb-3" style="color: var(--color-text-main)">
           Experiență
         </h3>
@@ -52,7 +52,7 @@ onUnmounted(() => {
         </p>
       </article>
 
-      <article class="about-item text-center p-6">
+      <article class="about-item text-center p-6 w-full max-w-sm">
         <h3 class="font-heading text-h4 mb-3" style="color: var(--color-text-main)">
           Calitate
         </h3>
@@ -61,7 +61,7 @@ onUnmounted(() => {
         </p>
       </article>
 
-      <article class="about-item text-center p-6">
+      <article class="about-item text-center p-6 w-full max-w-sm md:col-span-2 lg:col-span-1">
         <h3 class="font-heading text-h4 mb-3" style="color: var(--color-text-main)">
           Rapiditate
         </h3>

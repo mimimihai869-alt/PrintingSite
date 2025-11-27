@@ -94,7 +94,7 @@ const navigateToService = (serviceId) => {
         Serviciile Noastre
       </h2>
       <p
-        class="font-body text-p1 text-center max-w-2xl mx-auto"
+        class="font-body text-p1 md:text-[18px] text-center max-w-2xl mx-auto"
         style="color: var(--color-text-muted)"
       >
         Soluții complete de printare pentru orice nevoie - de la materiale promoționale la proiecte tehnice
@@ -110,7 +110,7 @@ const navigateToService = (serviceId) => {
             @click="navigateToService(item.id)"
           >
             <div
-              class="aspect-[3/4] rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl"
+              class="aspect-[3/4] rounded-lg overflow-hidden transition-all duration-300 group-hover:shadow-2xl group-hover:brightness-105 group-hover:-translate-y-1"
               style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
             >
               <div class="w-full h-full flex items-center justify-center relative">
@@ -123,7 +123,7 @@ const navigateToService = (serviceId) => {
 
                 <!-- Hover Overlay -->
                 <div
-                  class="absolute inset-0 opacity-0 group-hover:opacity-95 transition-opacity duration-300 flex items-center justify-center p-6"
+                  class="absolute inset-0 opacity-0 group-hover:opacity-95 transition-opacity duration-300 flex items-center justify-center p-6 rounded-lg"
                   style="background-color: var(--color-accent-green)"
                 >
                   <p

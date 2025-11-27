@@ -195,11 +195,11 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- Bottom Overlay Band with Blurred Background -->
+    <!-- Bottom Overlay Band with Blurred Background - Shorter and more compact -->
     <div class="absolute bottom-0 left-0 right-0 z-20">
-      <!-- Blurred backdrop container - more transparent, only blur effect -->
+      <!-- Blurred backdrop container - less tall, more image visible -->
       <div
-        class="relative w-full py-8 md:py-12"
+        class="relative w-full py-6 md:py-8"
         style="background-color: rgba(0, 0, 0, 0.1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)"
       >
         <div class="mx-auto max-w-page px-4 md:px-8 flex items-center justify-between">
@@ -226,28 +226,20 @@ onUnmounted(() => {
             </svg>
           </button>
 
-          <!-- Center Content - Changes with each slide -->
+          <!-- Center Content - Changes with each slide, more compact -->
           <div class="flex-1 mx-6 md:mx-12 text-center">
             <Transition name="fade" mode="out-in">
-              <div :key="currentSlide" class="space-y-3 md:space-y-4">
-                <!-- Label -->
-                <p
-                  class="font-body text-p2 md:text-p1 uppercase tracking-wider"
-                  style="color: var(--color-bg-main)"
-                >
-                  {{ slides[currentSlide].label }}
-                </p>
-
-                <!-- Title - Smaller, using design tokens -->
+              <div :key="currentSlide" class="space-y-2 md:space-y-3">
+                <!-- Title - No label, just the main title -->
                 <h1
-                  class="font-heading text-h2 md:text-h1 font-bold"
+                  class="font-heading text-h3 md:text-h2 font-bold"
                   style="color: var(--color-bg-main)"
                 >
                   {{ slides[currentSlide].title }}
                 </h1>
 
-                <!-- CTA Button - Thinner -->
-                <div class="pt-2">
+                <!-- CTA Button - Closer spacing -->
+                <div class="pt-1">
                   <NuxtLink
                     :to="slides[currentSlide].ctaLink"
                     class="inline-block px-6 md:px-8 py-2 md:py-3 rounded-lg font-body text-p1 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
@@ -284,8 +276,8 @@ onUnmounted(() => {
           </button>
         </div>
 
-        <!-- Slide Indicators (dots) -->
-        <div class="flex justify-center items-center gap-2 mt-6">
+        <!-- Slide Indicators (dots) - Closer to content -->
+        <div class="flex justify-center items-center gap-2 mt-4">
           <button
             v-for="(slide, index) in slides"
             :key="`indicator-${slide.id}`"
