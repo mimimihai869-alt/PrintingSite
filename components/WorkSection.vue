@@ -8,6 +8,34 @@ gsap.registerPlugin(ScrollTrigger)
 const sectionRef = ref(null)
 let ctx
 
+// Portfolio items with images
+const portfolioItems = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&h=800&fit=crop'
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=800&fit=crop'
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=800&fit=crop'
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=800&fit=crop'
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=800&fit=crop'
+  },
+  {
+    id: 6,
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=800&fit=crop'
+  }
+]
+
 onMounted(() => {
   ctx = gsap.context(() => {
     gsap.from('.work-item', {
@@ -32,13 +60,10 @@ onUnmounted(() => {
   <section
     id="work"
     ref="sectionRef"
-    class="w-full py-16 md:py-24 relative overflow-hidden"
+    class="w-full py-16 md:py-24"
     style="background-color: var(--color-bg-alt)"
   >
-    <!-- Subtle background pattern -->
-    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, var(--color-accent-green) 1px, transparent 1px); background-size: 40px 40px;"></div>
-
-    <div class="mx-auto max-w-page px-4 relative z-10">
+    <div class="mx-auto max-w-page px-4">
       <h2
         class="font-heading text-h2 md:text-h1 text-center mb-8"
         style="color: var(--color-text-main)"
@@ -49,103 +74,27 @@ onUnmounted(() => {
         Proiecte realizate cu pasiune și atenție la detalii
       </p>
 
-      <!-- Bento Grid Layout -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
-        <!-- Large card - spans 2x2 -->
+      <!-- Simple Grid - 3 cards per row -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <article
-          class="work-item group col-span-2 row-span-2 rounded-2xl overflow-hidden cursor-pointer relative"
-          style="background-color: var(--color-bg-main)"
+          v-for="item in portfolioItems"
+          :key="item.id"
+          class="work-item group cursor-pointer"
         >
-          <!-- Animated Glow Border -->
-          <div class="portfolio-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <!-- Square card with image - same style as Services -->
+          <div class="portfolio-card aspect-square rounded-xl overflow-hidden relative transition-all duration-500 group-hover:scale-105">
+            <!-- Background Image -->
+            <img
+              :src="item.image"
+              :alt="`Portfolio ${item.id}`"
+              class="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110 rounded-xl"
+            />
 
-          <div class="relative w-full h-full flex items-center justify-center p-8 min-h-[300px] md:min-h-[400px]">
-            <span class="font-heading text-h3 text-center transition-all duration-300 group-hover:scale-110" style="color: var(--color-text-main)">
-              Proiect Principal
-            </span>
-          </div>
-        </article>
-
-        <!-- Medium card - spans 2x1 -->
-        <article
-          class="work-item group col-span-2 rounded-2xl overflow-hidden cursor-pointer relative"
-          style="background-color: var(--color-bg-main)"
-        >
-          <div class="portfolio-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <div class="relative w-full h-full flex items-center justify-center p-6 min-h-[150px] md:min-h-[195px]">
-            <span class="font-heading text-h4 text-center transition-all duration-300 group-hover:scale-110" style="color: var(--color-text-main)">
-              Bannere Exterior
-            </span>
-          </div>
-        </article>
-
-        <!-- Small cards - 1x1 -->
-        <article
-          class="work-item group rounded-2xl overflow-hidden cursor-pointer relative"
-          style="background-color: var(--color-bg-main)"
-        >
-          <div class="portfolio-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <div class="relative w-full h-full flex items-center justify-center p-4 min-h-[150px] md:min-h-[195px]">
-            <span class="font-heading text-h5 text-center transition-all duration-300 group-hover:scale-110" style="color: var(--color-text-main)">
-              Flyere
-            </span>
-          </div>
-        </article>
-
-        <article
-          class="work-item group rounded-2xl overflow-hidden cursor-pointer relative"
-          style="background-color: var(--color-bg-main)"
-        >
-          <div class="portfolio-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <div class="relative w-full h-full flex items-center justify-center p-4 min-h-[150px] md:min-h-[195px]">
-            <span class="font-heading text-h5 text-center transition-all duration-300 group-hover:scale-110" style="color: var(--color-text-main)">
-              Cărți de Vizită
-            </span>
-          </div>
-        </article>
-
-        <!-- Tall card - 1x2 -->
-        <article
-          class="work-item group row-span-2 rounded-2xl overflow-hidden cursor-pointer relative"
-          style="background-color: var(--color-bg-main)"
-        >
-          <div class="portfolio-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <div class="relative w-full h-full flex items-center justify-center p-6 min-h-[300px] md:min-h-[392px]">
-            <span class="font-heading text-h4 text-center transition-all duration-300 group-hover:scale-110" style="color: var(--color-text-main)">
-              Roll-up Sisteme
-            </span>
-          </div>
-        </article>
-
-        <!-- Small card -->
-        <article
-          class="work-item group rounded-2xl overflow-hidden cursor-pointer relative"
-          style="background-color: var(--color-bg-main)"
-        >
-          <div class="portfolio-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <div class="relative w-full h-full flex items-center justify-center p-4 min-h-[150px] md:min-h-[195px]">
-            <span class="font-heading text-h5 text-center transition-all duration-300 group-hover:scale-110" style="color: var(--color-text-main)">
-              Ambalaje
-            </span>
-          </div>
-        </article>
-
-        <!-- Medium card - 2x1 -->
-        <article
-          class="work-item group col-span-2 rounded-2xl overflow-hidden cursor-pointer relative"
-          style="background-color: var(--color-bg-main)"
-        >
-          <div class="portfolio-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <div class="relative w-full h-full flex items-center justify-center p-6 min-h-[150px] md:min-h-[195px]">
-            <span class="font-heading text-h4 text-center transition-all duration-300 group-hover:scale-110" style="color: var(--color-text-main)">
-              Plotare CAD
-            </span>
+            <!-- Subtle hover overlay - no text -->
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-500 rounded-xl"
+              style="background-color: var(--color-accent-green)"
+            ></div>
           </div>
         </article>
       </div>
@@ -154,62 +103,11 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-@keyframes portfolioGlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.portfolio-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.portfolio-glow {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-accent-green),
-    #a8c99c,
-    var(--color-accent-green),
-    transparent
-  );
-  background-size: 200% 100%;
-  filter: blur(10px);
-  animation: portfolioGlow 3s linear infinite;
-}
-
-.work-item {
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.work-item::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-accent-green),
-    #a8c99c,
-    var(--color-accent-green),
-    transparent
-  );
-  background-size: 200% 100%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.5s;
-  pointer-events: none;
-}
-
-.group:hover.work-item::before {
-  opacity: 1;
-  animation: portfolioGlow 3s linear infinite;
+.group:hover .portfolio-card {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 </style>

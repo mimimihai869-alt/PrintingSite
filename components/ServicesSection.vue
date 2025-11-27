@@ -109,12 +109,12 @@ const navigateToService = (serviceId) => {
               <img
                 :src="item.image"
                 :alt="item.title"
-                class="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                class="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110 rounded-xl"
               />
 
               <!-- Hover Overlay with Text -->
               <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-6 text-center"
+                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-6 text-center rounded-xl"
                 style="background: linear-gradient(135deg, rgba(122, 143, 116, 0.95) 0%, rgba(122, 143, 116, 0.85) 100%)"
               >
                 <h3
