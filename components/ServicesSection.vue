@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 const sectionRef = ref(null)
+const hoveredIndex = ref(null)
 
 // Extended services list - supports up to 11 different services
 const services = [
@@ -104,18 +105,22 @@ const navigateToService = (serviceId) => {
     <!-- Services Carousel -->
     <div class="px-8 md:px-16">
       <CarouselComponent :items="services" :visible-count="5" item-width="280px">
-        <template #item="{ item }">
+        <template #item="{ item, index }">
           <article
             class="group cursor-pointer h-full px-3"
             @click="navigateToService(item.id)"
           >
             <div
-              class="aspect-[3/4] rounded-lg overflow-hidden transition-all duration-300 group-hover:shadow-2xl group-hover:brightness-105 group-hover:-translate-y-1"
-              style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
+              class="service-card aspect-[3/4] rounded-lg overflow-hidden relative"
+              style="background-color: var(--color-bg-alt)"
             >
-              <div class="w-full h-full flex items-center justify-center relative">
+              <!-- Animated Glow Border -->
+              <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 glow-border"></div>
+
+              <!-- Card Content -->
+              <div class="relative w-full h-full flex items-center justify-center border-2 border-transparent group-hover:border-opacity-0 transition-all duration-300 rounded-lg" style="border-color: var(--color-accent-green)">
                 <span
-                  class="font-heading text-h4 text-center px-4"
+                  class="font-heading text-h4 text-center px-4 transition-opacity duration-300 group-hover:opacity-0"
                   style="color: var(--color-text-main)"
                 >
                   {{ item.title }}
@@ -141,3 +146,62 @@ const navigateToService = (serviceId) => {
     </div>
   </section>
 </template>
+
+<style scoped>
+@keyframes glowRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.glow-border {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent-green),
+    #a8c99c,
+    var(--color-accent-green),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: glowRotate 3s linear infinite;
+  filter: blur(8px);
+}
+
+.service-card {
+  position: relative;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent-green),
+    #a8c99c,
+    var(--color-accent-green),
+    transparent
+  );
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.group:hover .service-card::before {
+  opacity: 1;
+  animation: glowRotate 3s linear infinite;
+}
+</style>

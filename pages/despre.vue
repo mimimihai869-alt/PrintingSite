@@ -23,10 +23,14 @@ const differentiators = [
   <div>
     <TheNavbar />
 
-    <!-- Green Background Section - 120vh -->
-    <main class="pt-24 pb-16" style="background-color: var(--color-accent-soft); min-height: 120vh">
+    <!-- Green Background Section - Auto height with decorative elements -->
+    <main class="pt-24 pb-16 relative overflow-hidden" style="background-color: var(--color-accent-soft)">
+      <!-- Decorative circles -->
+      <div class="absolute top-10 right-10 w-64 h-64 rounded-full opacity-10" style="background: radial-gradient(circle, var(--color-accent-green) 0%, transparent 70%);"></div>
+      <div class="absolute bottom-10 left-10 w-48 h-48 rounded-full opacity-10" style="background: radial-gradient(circle, var(--color-accent-green) 0%, transparent 70%);"></div>
+
       <!-- About Hero -->
-      <section class="w-full py-12">
+      <section class="w-full py-12 relative z-10">
         <div class="mx-auto max-w-page px-4">
           <h1
             class="font-heading text-h1 md:text-[60px] text-center mb-6"
@@ -44,9 +48,9 @@ const differentiators = [
       </section>
 
       <!-- Story Section in White Container -->
-      <section class="w-full pb-8">
+      <section class="w-full pb-8 relative z-10">
         <div class="mx-auto max-w-page px-4 md:px-8">
-          <div class="rounded-lg p-8 md:p-12" style="background-color: var(--color-bg-main)">
+          <div class="rounded-xl p-8 md:p-12 shadow-lg" style="background-color: var(--color-bg-main); border-top: 4px solid var(--color-accent-green)">
             <h2 class="font-heading text-h2 md:text-h1 text-center mb-8" style="color: var(--color-text-main)">
               Povestea Noastră
             </h2>
@@ -72,11 +76,14 @@ const differentiators = [
     </main>
 
     <!-- Lighter Background Section - Rest of the page -->
-    <section class="py-16" style="background-color: var(--color-bg-alt)">
+    <section class="py-16 relative overflow-hidden" style="background-color: var(--color-bg-alt)">
+      <!-- Subtle pattern -->
+      <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, var(--color-accent-green) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
       <!-- Three Card Highlights in White Container -->
-      <div class="w-full pb-8">
+      <div class="w-full pb-8 relative z-10">
         <div class="mx-auto max-w-page px-4 md:px-8">
-          <div class="rounded-lg p-8 md:p-12" style="background-color: var(--color-bg-main)">
+          <div class="rounded-xl p-8 md:p-12 shadow-lg" style="background-color: var(--color-bg-main)">
             <h2 class="font-heading text-h2 md:text-h1 text-center mb-12" style="color: var(--color-text-main)">
               De Ce PrintCo?
             </h2>
@@ -84,9 +91,11 @@ const differentiators = [
               <article
                 v-for="(card, index) in differentiators"
                 :key="index"
-                class="group p-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+                class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative overflow-hidden"
                 style="background-color: var(--color-bg-alt); border: 2px solid var(--color-accent-green)"
               >
+                <!-- Accent corner -->
+                <div class="absolute top-0 right-0 w-16 h-16 opacity-20" style="background: linear-gradient(135deg, var(--color-accent-green) 0%, transparent 70%);"></div>
                 <h3 class="font-heading text-h4 mb-4" style="color: var(--color-accent-green)">
                   {{ card.title }}
                 </h3>
@@ -100,9 +109,9 @@ const differentiators = [
       </div>
 
       <!-- Equipment & Capabilities in White Container -->
-      <div class="w-full pb-8">
+      <div class="w-full pb-8 relative z-10">
         <div class="mx-auto max-w-page px-4 md:px-8">
-          <div class="rounded-lg p-8 md:p-12" style="background-color: var(--color-bg-main)">
+          <div class="rounded-xl p-8 md:p-12 shadow-lg" style="background-color: var(--color-bg-main); border-left: 4px solid var(--color-accent-green)">
             <h2 class="font-heading text-h2 md:text-h1 text-center mb-12" style="color: var(--color-text-main)">
               Echipamente & Capacități
             </h2>
@@ -152,26 +161,29 @@ const differentiators = [
       </div>
 
       <!-- Values Section in White Container -->
-      <div class="w-full pb-8">
+      <div class="w-full pb-8 relative z-10">
         <div class="mx-auto max-w-page px-4 md:px-8">
-          <div class="rounded-lg p-8 md:p-12" style="background-color: var(--color-bg-main)">
+          <div class="rounded-xl p-8 md:p-12 shadow-lg" style="background-color: var(--color-bg-main); border-right: 4px solid var(--color-accent-green)">
             <h2 class="font-heading text-h2 md:text-h1 mb-12 text-center" style="color: var(--color-text-main)">
               Valorile Noastre
             </h2>
 
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div class="group p-6 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <h3 class="font-heading text-h5 mb-3" style="color: var(--color-text-main)">
+              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
+                <!-- Subtle glow on hover -->
+                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
+                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
                   Calitate Fără Compromisuri
                 </h3>
-                <p class="font-body text-p1" style="color: var(--color-text-muted)">
+                <p class="font-body text-p1 relative z-10" style="color: var(--color-text-muted)">
                   Controlul calității la fiecare etapă, de la primirea fișierului până la livrarea finală.
                   Garantăm 100% satisfacție sau refacem gratuit.
                 </p>
               </div>
 
-              <div class="group p-6 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <h3 class="font-heading text-h5 mb-3" style="color: var(--color-text-main)">
+              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
+                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
+                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
                   Transparență Totală
                 </h3>
                 <p class="font-body text-p1" style="color: var(--color-text-muted)">
@@ -179,8 +191,9 @@ const differentiators = [
                 </p>
               </div>
 
-              <div class="group p-6 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <h3 class="font-heading text-h5 mb-3" style="color: var(--color-text-main)">
+              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
+                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
+                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
                   Inovație Continuă
                 </h3>
                 <p class="font-body text-p1" style="color: var(--color-text-muted)">
@@ -188,8 +201,9 @@ const differentiators = [
                 </p>
               </div>
 
-              <div class="group p-6 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
-                <h3 class="font-heading text-h5 mb-3" style="color: var(--color-text-main)">
+              <div class="group p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative" style="background-color: var(--color-bg-alt); border-left: 4px solid var(--color-accent-green)">
+                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background: radial-gradient(circle at center, var(--color-accent-green) 0%, transparent 70%);"></div>
+                <h3 class="font-heading text-h5 mb-3 relative z-10" style="color: var(--color-text-main)">
                   Relații Pe Termen Lung
                 </h3>
                 <p class="font-body text-p1" style="color: var(--color-text-muted)">
