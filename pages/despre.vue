@@ -23,8 +23,8 @@ const differentiators = [
   <div>
     <TheNavbar />
 
-    <!-- Full Green Background Main -->
-    <main class="pt-24 pb-16" style="background-color: var(--color-accent-soft)">
+    <!-- Green Background Section - 120vh -->
+    <main class="pt-24 pb-16" style="background-color: var(--color-accent-soft); min-height: 120vh">
       <!-- About Hero -->
       <section class="w-full py-12">
         <div class="mx-auto max-w-page px-4">
@@ -69,9 +69,12 @@ const differentiators = [
           </div>
         </div>
       </section>
+    </main>
 
+    <!-- Lighter Background Section - Rest of the page -->
+    <section class="py-16" style="background-color: var(--color-bg-alt)">
       <!-- Three Card Highlights in White Container -->
-      <section class="w-full pb-8">
+      <div class="w-full pb-8">
         <div class="mx-auto max-w-page px-4 md:px-8">
           <div class="rounded-lg p-8 md:p-12" style="background-color: var(--color-bg-main)">
             <h2 class="font-heading text-h2 md:text-h1 text-center mb-12" style="color: var(--color-text-main)">
@@ -94,10 +97,10 @@ const differentiators = [
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- Equipment & Capabilities in White Container -->
-      <section class="w-full pb-8">
+      <div class="w-full pb-8">
         <div class="mx-auto max-w-page px-4 md:px-8">
           <div class="rounded-lg p-8 md:p-12" style="background-color: var(--color-bg-main)">
             <h2 class="font-heading text-h2 md:text-h1 text-center mb-12" style="color: var(--color-text-main)">
@@ -146,10 +149,10 @@ const differentiators = [
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- Values Section in White Container -->
-      <section class="w-full pb-8">
+      <div class="w-full pb-8">
         <div class="mx-auto max-w-page px-4 md:px-8">
           <div class="rounded-lg p-8 md:p-12" style="background-color: var(--color-bg-main)">
             <h2 class="font-heading text-h2 md:text-h1 mb-12 text-center" style="color: var(--color-text-main)">
@@ -196,8 +199,8 @@ const differentiators = [
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <TheFooter />
   </div>

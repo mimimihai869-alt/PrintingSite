@@ -54,38 +54,40 @@ onUnmounted(() => {
   <section
     id="testimonials"
     ref="sectionRef"
-    class="mx-auto max-w-page px-4 py-16 md:py-24"
+    class="w-full py-16 md:py-24"
     style="background-color: var(--color-bg-main)"
   >
-    <h2
-      class="font-heading text-h2 md:text-h1 text-center mb-12"
-      style="color: var(--color-text-main)"
-    >
-      Ce Spun Clienții Noștri
-    </h2>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      <article
-        v-for="testimonial in testimonials"
-        :key="testimonial.id"
-        class="testimonial-card p-8 rounded-lg border-l-4"
-        style="background-color: var(--color-bg-alt); border-left-color: var(--color-accent-green)"
+    <div class="mx-auto max-w-page px-4">
+      <h2
+        class="font-heading text-h2 md:text-h1 text-center mb-12"
+        style="color: var(--color-text-main)"
       >
-        <p
-          class="font-body text-p1 mb-6 italic"
-          style="color: var(--color-text-muted)"
+        Ce Spun Clienții Noștri
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <article
+          v-for="testimonial in testimonials"
+          :key="testimonial.id"
+          class="testimonial-card p-8 rounded-lg border-l-4"
+          style="background-color: var(--color-bg-alt); border-left-color: var(--color-accent-green)"
         >
-          "{{ testimonial.text }}"
-        </p>
-        <div>
-          <p class="font-heading text-h6" style="color: var(--color-text-main)">
-            {{ testimonial.author }}
+          <p
+            class="font-body text-p1 mb-6 italic"
+            style="color: var(--color-text-muted)"
+          >
+            "{{ testimonial.text }}"
           </p>
-          <p class="font-body text-p3" style="color: var(--color-text-muted)">
-            {{ testimonial.company }}
-          </p>
-        </div>
-      </article>
+          <div>
+            <p class="font-heading text-h6" style="color: var(--color-text-main)">
+              {{ testimonial.author }}
+            </p>
+            <p class="font-body text-p3" style="color: var(--color-text-muted)">
+              {{ testimonial.company }}
+            </p>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 </template>

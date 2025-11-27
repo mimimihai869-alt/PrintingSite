@@ -32,30 +32,32 @@ onUnmounted(() => {
   <section
     id="work"
     ref="sectionRef"
-    class="mx-auto max-w-page px-4 py-16 md:py-24"
+    class="w-full py-16 md:py-24"
     style="background-color: var(--color-bg-alt)"
   >
-    <h2
-      class="font-heading text-h2 md:text-h1 text-center mb-12"
-      style="color: var(--color-text-main)"
-    >
-      Portofoliul Nostru
-    </h2>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <article
-        v-for="i in 6"
-        :key="i"
-        class="work-item aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer"
-        style="background-color: var(--color-bg-main); border: 2px solid var(--color-accent-green)"
+    <div class="mx-auto max-w-page px-4">
+      <h2
+        class="font-heading text-h2 md:text-h1 text-center mb-12"
+        style="color: var(--color-text-main)"
       >
-        <!-- Placeholder for portfolio images -->
-        <div class="w-full h-full flex items-center justify-center">
-          <span class="font-body text-p2" style="color: var(--color-text-muted)">
-            Portofoliu {{ i }}
-          </span>
-        </div>
-      </article>
+        Portofoliul Nostru
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article
+          v-for="i in 6"
+          :key="i"
+          class="work-item aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer"
+          style="background-color: var(--color-bg-main); border: 2px solid var(--color-accent-green)"
+        >
+          <!-- Placeholder for portfolio images -->
+          <div class="w-full h-full flex items-center justify-center">
+            <span class="font-body text-p2" style="color: var(--color-text-muted)">
+              Portofoliu {{ i }}
+            </span>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 </template>

@@ -43,10 +43,11 @@ onUnmounted(() => {
   <section
     id="contact"
     ref="sectionRef"
-    class="mx-auto max-w-page px-4 py-16 md:py-24"
+    class="w-full py-16 md:py-24"
     style="background-color: var(--color-bg-alt)"
   >
-    <div class="contact-content max-w-3xl mx-auto">
+    <div class="mx-auto max-w-page px-4">
+      <div class="contact-content max-w-3xl mx-auto">
       <h2
         class="font-heading text-h2 md:text-h1 text-center mb-12"
         style="color: var(--color-text-main)"
@@ -122,6 +123,7 @@ onUnmounted(() => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   </section>
 </template>
