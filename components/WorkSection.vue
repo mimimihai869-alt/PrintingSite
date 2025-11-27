@@ -38,7 +38,7 @@ const portfolioItems = [
 
 onMounted(() => {
   ctx = gsap.context(() => {
-    gsap.from('.work-item', {
+    gsap.from('.group', {
       scale: 0.9,
       opacity: 0,
       stagger: 0.1,
@@ -79,35 +79,16 @@ onUnmounted(() => {
         <article
           v-for="item in portfolioItems"
           :key="item.id"
-          class="work-item group cursor-pointer"
+          class="group"
         >
-          <!-- Square card with image - same style as Services -->
-          <div class="portfolio-card aspect-square rounded-xl overflow-hidden relative transition-all duration-500 group-hover:scale-105">
-            <!-- Background Image -->
-            <img
-              :src="item.image"
-              :alt="`Portfolio ${item.id}`"
-              class="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110 rounded-xl"
-            />
-
-            <!-- Subtle hover overlay - no text -->
-            <div
-              class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-500 rounded-xl"
-              style="background-color: var(--color-accent-green)"
-            ></div>
-          </div>
+          <ImageCard
+            :image="item.image"
+            :alt="`Portfolio ${item.id}`"
+            aspect-ratio="square"
+            :show-text-on-hover="false"
+          />
         </article>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-.portfolio-card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.group:hover .portfolio-card {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-</style>
