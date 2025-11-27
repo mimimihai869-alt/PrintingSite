@@ -95,21 +95,23 @@ const toggleFaq = (id) => {
     <main class="pt-24">
       <!-- FAQ Hero -->
       <section
-        class="mx-auto max-w-page px-4 py-16"
+        class="w-full py-16"
         style="background-color: var(--color-accent-soft)"
       >
-        <h1
-          class="font-heading text-h1 md:text-[60px] text-center mb-6"
-          style="color: var(--color-text-main)"
-        >
-          Întrebări Frecvente
-        </h1>
-        <p
-          class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
-          style="color: var(--color-text-muted)"
-        >
-          Răspunsuri la cele mai comune întrebări
-        </p>
+        <div class="mx-auto max-w-page px-4">
+          <h1
+            class="font-heading text-h1 md:text-[60px] text-center mb-6"
+            style="color: var(--color-text-main)"
+          >
+            Întrebări Frecvente
+          </h1>
+          <p
+            class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
+            style="color: var(--color-text-muted)"
+          >
+            Răspunsuri la cele mai comune întrebări
+          </p>
+        </div>
       </section>
 
       <!-- FAQ List -->
@@ -118,12 +120,12 @@ const toggleFaq = (id) => {
           <article
             v-for="faq in faqs"
             :key="faq.id"
-            class="rounded-lg overflow-hidden"
+            class="group rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
             style="background-color: var(--color-bg-alt); border: 1px solid var(--color-border)"
           >
             <button
               @click="toggleFaq(faq.id)"
-              class="w-full text-left p-6 flex items-center justify-between hover:opacity-80 transition-opacity"
+              class="w-full text-left p-6 flex items-center justify-between transition-opacity"
             >
               <h3 class="font-heading text-h6" style="color: var(--color-text-main)">
                 {{ faq.question }}

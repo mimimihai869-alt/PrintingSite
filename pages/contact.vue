@@ -27,21 +27,23 @@ useHead({
     <main class="pt-24">
       <!-- Contact Hero -->
       <section
-        class="mx-auto max-w-page px-4 py-16"
+        class="w-full py-16"
         style="background-color: var(--color-accent-soft)"
       >
-        <h1
-          class="font-heading text-h1 md:text-[60px] text-center mb-6"
-          style="color: var(--color-text-main)"
-        >
-          Contactează-ne
-        </h1>
-        <p
-          class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
-          style="color: var(--color-text-muted)"
-        >
-          Suntem aici să te ajutăm cu orice proiect de printare
-        </p>
+        <div class="mx-auto max-w-page px-4">
+          <h1
+            class="font-heading text-h1 md:text-[60px] text-center mb-6"
+            style="color: var(--color-text-main)"
+          >
+            Contactează-ne
+          </h1>
+          <p
+            class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
+            style="color: var(--color-text-muted)"
+          >
+            Suntem aici să te ajutăm cu orice proiect de printare
+          </p>
+        </div>
       </section>
 
       <!-- Contact Information -->
@@ -319,14 +321,16 @@ useHead({
         </div>
 
         <!-- Service Area Info -->
-        <div class="mx-auto max-w-page px-6 md:px-8 mt-8">
-          <div
-            class="p-6 rounded-lg text-center"
-            style="background-color: var(--color-accent-soft)"
-          >
-            <p class="font-body text-p1 mb-2" style="color: var(--color-text-main)">
-              <strong>Zone de livrare:</strong> {{ businessInfo.serviceArea.primary }} și {{ businessInfo.serviceArea.secondary.join(', ') }}
-            </p>
+        <div class="w-full mt-8">
+          <div class="mx-auto max-w-page px-6 md:px-8">
+            <div
+              class="p-6 rounded-lg text-center"
+              style="background-color: var(--color-accent-soft)"
+            >
+              <p class="font-body text-p1 mb-2" style="color: var(--color-text-main)">
+                <strong>Zone de livrare:</strong> {{ businessInfo.serviceArea.primary }} și {{ businessInfo.serviceArea.secondary.join(', ') }}
+              </p>
+            </div>
           </div>
         </div>
       </section>

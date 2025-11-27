@@ -11,28 +11,30 @@ useHead({
     <main class="pt-24">
       <!-- Technical Requirements Hero -->
       <section
-        class="mx-auto max-w-page px-4 py-16"
+        class="w-full py-16"
         style="background-color: var(--color-accent-soft)"
       >
-        <h1
-          class="font-heading text-h1 md:text-[60px] text-center mb-6"
-          style="color: var(--color-text-main)"
-        >
-          Cerințe Tehnice
-        </h1>
-        <p
-          class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
-          style="color: var(--color-text-muted)"
-        >
-          Specificații pentru fișiere și detalii de livrare
-        </p>
+        <div class="mx-auto max-w-page px-4">
+          <h1
+            class="font-heading text-h1 md:text-[60px] text-center mb-6"
+            style="color: var(--color-text-main)"
+          >
+            Cerințe Tehnice
+          </h1>
+          <p
+            class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
+            style="color: var(--color-text-muted)"
+          >
+            Specificații pentru fișiere și detalii de livrare
+          </p>
+        </div>
       </section>
 
       <!-- Technical Details -->
       <section class="mx-auto max-w-page px-4 py-16">
         <div class="max-w-4xl mx-auto space-y-8">
           <article
-            class="p-8 rounded-lg"
+            class="group p-8 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
             style="background-color: var(--color-bg-alt)"
           >
             <h2 class="font-heading text-h3 mb-6" style="color: var(--color-text-main)">
@@ -47,7 +49,7 @@ useHead({
           </article>
 
           <article
-            class="p-8 rounded-lg"
+            class="group p-8 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
             style="background-color: var(--color-bg-alt)"
           >
             <h2 class="font-heading text-h3 mb-6" style="color: var(--color-text-main)">
@@ -61,7 +63,7 @@ useHead({
           </article>
 
           <article
-            class="p-8 rounded-lg"
+            class="group p-8 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
             style="background-color: var(--color-bg-alt)"
           >
             <h2 class="font-heading text-h3 mb-6" style="color: var(--color-text-main)">

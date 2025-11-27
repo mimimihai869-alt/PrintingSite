@@ -11,21 +11,23 @@ useHead({
     <main class="pt-24">
       <!-- Services Hero -->
       <section
-        class="mx-auto max-w-page px-4 py-16"
+        class="w-full py-16"
         style="background-color: var(--color-accent-soft)"
       >
-        <h1
-          class="font-heading text-h1 md:text-[60px] text-center mb-6"
-          style="color: var(--color-text-main)"
-        >
-          Serviciile Noastre Complete
-        </h1>
-        <p
-          class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
-          style="color: var(--color-text-muted)"
-        >
-          Gamă completă de soluții de printare profesională pentru orice nevoie
-        </p>
+        <div class="mx-auto max-w-page px-4">
+          <h1
+            class="font-heading text-h1 md:text-[60px] text-center mb-6"
+            style="color: var(--color-text-main)"
+          >
+            Serviciile Noastre Complete
+          </h1>
+          <p
+            class="font-body text-p1 md:text-[18px] text-center max-w-3xl mx-auto"
+            style="color: var(--color-text-muted)"
+          >
+            Gamă completă de soluții de printare profesională pentru orice nevoie
+          </p>
+        </div>
       </section>
 
       <!-- Detailed Services List -->
@@ -33,7 +35,7 @@ useHead({
         <div class="space-y-12">
           <!-- Service Item Template -->
           <article
-            class="p-8 rounded-lg border-l-4"
+            class="group p-8 rounded-lg border-l-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer"
             style="background-color: var(--color-bg-alt); border-left-color: var(--color-accent-green)"
           >
             <h2 class="font-heading text-h3 mb-4" style="color: var(--color-text-main)">

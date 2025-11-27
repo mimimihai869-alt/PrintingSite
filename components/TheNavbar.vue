@@ -1,46 +1,11 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import gsap from 'gsap'
+import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
-const navbarRef = ref(null)
-const logoRef = ref(null)
+const router = useRouter()
+const route = useRoute()
 const mobileMenuOpen = ref(false)
 const showLogoMenu = ref(false)
-
-let lastScrollY = 0
-let ticking = false
-
-const handleScroll = () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const currentScrollY = window.scrollY
-
-      // Only apply hide/show behavior after scrolling past 100px
-      if (currentScrollY > 100) {
-        if (currentScrollY > lastScrollY) {
-          // Scrolling down - hide navbar
-          gsap.to(navbarRef.value, {
-            y: -100,
-            duration: 0.3,
-            ease: 'power2.out'
-          })
-        } else {
-          // Scrolling up - show navbar
-          gsap.to(navbarRef.value, {
-            y: 0,
-            duration: 0.3,
-            ease: 'power2.out'
-          })
-        }
-      }
-
-      lastScrollY = currentScrollY
-      ticking = false
-    })
-
-    ticking = true
-  }
-}
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
@@ -51,27 +16,34 @@ const scrollToTop = () => {
     top: 0,
     behavior: 'smooth'
   })
+  showLogoMenu.value = false
 }
 
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true })
-})
+const handleNavClick = (path) => {
+  // Close mobile menu if open
+  mobileMenuOpen.value = false
+  showLogoMenu.value = false
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  // If we're already on this page, scroll to top instead of navigating
+  if (route.path === path) {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  } else {
+    router.push(path)
+  }
+}
 </script>
 
 <template>
   <nav
-    ref="navbarRef"
     class="navbar fixed top-0 left-0 right-0 z-50 px-4 py-5 md:py-6"
     style="background-color: var(--color-bg-main); box-shadow: 0 2px 10px rgba(0,0,0,0.1)"
   >
     <div class="mx-auto max-w-page flex items-center justify-between">
       <!-- Logo (Left Side) -->
       <div
-        ref="logoRef"
         class="logo-container relative"
         @mouseenter="showLogoMenu = true"
         @mouseleave="showLogoMenu = false"
@@ -101,34 +73,34 @@ onUnmounted(() => {
             class="absolute top-full left-0 mt-2 rounded-lg shadow-lg overflow-hidden min-w-[200px]"
             style="background-color: var(--color-bg-main); border: 2px solid var(--color-accent-green)"
           >
-            <NuxtLink
-              to="/"
-              class="block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
+            <button
+              @click="handleNavClick('/')"
+              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
               style="color: var(--color-text-main)"
             >
               🏠 Acasă
-            </NuxtLink>
-            <NuxtLink
-              to="/servicii"
-              class="block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
+            </button>
+            <button
+              @click="handleNavClick('/servicii')"
+              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
               style="color: var(--color-text-main)"
             >
               📋 Servicii
-            </NuxtLink>
-            <NuxtLink
-              to="/despre"
-              class="block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
+            </button>
+            <button
+              @click="handleNavClick('/despre')"
+              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
               style="color: var(--color-text-main)"
             >
               ℹ️ Despre Noi
-            </NuxtLink>
-            <NuxtLink
-              to="/contact"
-              class="block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
+            </button>
+            <button
+              @click="handleNavClick('/contact')"
+              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
               style="color: var(--color-text-main)"
             >
               ✉️ Contact
-            </NuxtLink>
+            </button>
           </div>
         </Transition>
       </div>
@@ -136,58 +108,58 @@ onUnmounted(() => {
       <!-- Desktop Navigation (Center) -->
       <ul class="hidden md:flex items-center justify-center gap-6 lg:gap-10 font-body text-p1">
         <li>
-          <NuxtLink
-            to="/"
+          <button
+            @click="handleNavClick('/')"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
             Acasă
-          </NuxtLink>
+          </button>
         </li>
         <li>
-          <NuxtLink
-            to="/servicii"
+          <button
+            @click="handleNavClick('/servicii')"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
             Servicii
-          </NuxtLink>
+          </button>
         </li>
         <li>
-          <NuxtLink
-            to="/despre"
+          <button
+            @click="handleNavClick('/despre')"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
             Despre Noi
-          </NuxtLink>
+          </button>
         </li>
         <li>
-          <NuxtLink
-            to="/cerinte-tehnice"
+          <button
+            @click="handleNavClick('/cerinte-tehnice')"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
             Cerințe
-          </NuxtLink>
+          </button>
         </li>
         <li>
-          <NuxtLink
-            to="/faq"
+          <button
+            @click="handleNavClick('/faq')"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
             FAQ
-          </NuxtLink>
+          </button>
         </li>
         <li>
-          <NuxtLink
-            to="/contact"
+          <button
+            @click="handleNavClick('/contact')"
             class="nav-link"
             style="color: var(--color-text-main)"
           >
             Contact
-          </NuxtLink>
+          </button>
         </li>
       </ul>
 
@@ -231,64 +203,58 @@ onUnmounted(() => {
             style="background-color: var(--color-bg-main); border: 2px solid var(--color-accent-green)"
           >
             <li>
-              <NuxtLink
-                to="/"
-                class="nav-link-mobile block px-6 py-3"
+              <button
+                @click="handleNavClick('/')"
+                class="w-full text-left nav-link-mobile block px-6 py-3"
                 style="color: var(--color-text-main)"
-                @click="mobileMenuOpen = false"
               >
                 Acasă
-              </NuxtLink>
+              </button>
             </li>
             <li>
-              <NuxtLink
-                to="/servicii"
-                class="nav-link-mobile block px-6 py-3"
+              <button
+                @click="handleNavClick('/servicii')"
+                class="w-full text-left nav-link-mobile block px-6 py-3"
                 style="color: var(--color-text-main)"
-                @click="mobileMenuOpen = false"
               >
                 Servicii
-              </NuxtLink>
+              </button>
             </li>
             <li>
-              <NuxtLink
-                to="/despre"
-                class="nav-link-mobile block px-6 py-3"
+              <button
+                @click="handleNavClick('/despre')"
+                class="w-full text-left nav-link-mobile block px-6 py-3"
                 style="color: var(--color-text-main)"
-                @click="mobileMenuOpen = false"
               >
                 Despre Noi
-              </NuxtLink>
+              </button>
             </li>
             <li>
-              <NuxtLink
-                to="/cerinte-tehnice"
-                class="nav-link-mobile block px-6 py-3"
+              <button
+                @click="handleNavClick('/cerinte-tehnice')"
+                class="w-full text-left nav-link-mobile block px-6 py-3"
                 style="color: var(--color-text-main)"
-                @click="mobileMenuOpen = false"
               >
                 Cerințe Tehnice
-              </NuxtLink>
+              </button>
             </li>
             <li>
-              <NuxtLink
-                to="/faq"
-                class="nav-link-mobile block px-6 py-3"
+              <button
+                @click="handleNavClick('/faq')"
+                class="w-full text-left nav-link-mobile block px-6 py-3"
                 style="color: var(--color-text-main)"
-                @click="mobileMenuOpen = false"
               >
                 FAQ
-              </NuxtLink>
+              </button>
             </li>
             <li>
-              <NuxtLink
-                to="/contact"
-                class="nav-link-mobile block px-6 py-3"
+              <button
+                @click="handleNavClick('/contact')"
+                class="w-full text-left nav-link-mobile block px-6 py-3"
                 style="color: var(--color-text-main)"
-                @click="mobileMenuOpen = false"
               >
                 Contact
-              </NuxtLink>
+              </button>
             </li>
           </ul>
         </Transition>
