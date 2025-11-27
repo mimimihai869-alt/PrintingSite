@@ -1,28 +1,75 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import gsap from 'gsap'
 
 const router = useRouter()
 const route = useRoute()
+const navbarRef = ref(null)
 const mobileMenuOpen = ref(false)
-const showLogoMenu = ref(false)
+
+let lastScrollY = 0
+let ticking = false
+
+const handleScroll = () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const currentScrollY = window.scrollY
+
+      // Only apply hide/show behavior after scrolling past 100px
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down - hide navbar
+          gsap.to(navbarRef.value, {
+            y: -100,
+            duration: 0.3,
+            ease: 'power2.out'
+          })
+        } else {
+          // Scrolling up - show navbar
+          gsap.to(navbarRef.value, {
+            y: 0,
+            duration: 0.3,
+            ease: 'power2.out'
+          })
+        }
+      } else {
+        // Always show navbar when near top
+        gsap.to(navbarRef.value, {
+          y: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        })
+      }
+
+      lastScrollY = currentScrollY
+      ticking = false
+    })
+
+    ticking = true
+  }
+}
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
-  showLogoMenu.value = false
+const handleLogoClick = () => {
+  // If we're on homepage, scroll to top
+  if (route.path === '/') {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  } else {
+    // Otherwise navigate to homepage
+    router.push('/')
+  }
 }
 
 const handleNavClick = (path) => {
   // Close mobile menu if open
   mobileMenuOpen.value = false
-  showLogoMenu.value = false
 
   // If we're already on this page, scroll to top instead of navigating
   if (route.path === path) {
@@ -34,76 +81,41 @@ const handleNavClick = (path) => {
     router.push(path)
   }
 }
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
   <nav
-    class="navbar fixed top-0 left-0 right-0 z-50 px-4 py-5 md:py-6"
+    ref="navbarRef"
+    class="navbar fixed top-0 left-0 right-0 z-50 px-4 py-3 md:py-4"
     style="background-color: var(--color-bg-main); box-shadow: 0 2px 10px rgba(0,0,0,0.1)"
   >
     <div class="mx-auto max-w-page flex items-center justify-between">
-      <!-- Logo (Left Side) -->
-      <div
-        class="logo-container relative"
-        @mouseenter="showLogoMenu = true"
-        @mouseleave="showLogoMenu = false"
+      <!-- Logo (Left Side) - No hover menu -->
+      <button
+        @click="handleLogoClick"
+        class="flex items-center gap-2 focus:outline-none transition-all duration-200 hover:scale-105"
+        aria-label="Go to homepage"
       >
-        <button
-          @click="scrollToTop"
-          class="flex items-center gap-2 focus:outline-none transition-all duration-200 hover:scale-105"
-          aria-label="Scroll to top"
+        <div
+          class="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center"
+          style="background-color: var(--color-accent-green)"
         >
-          <div
-            class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center"
-            style="background-color: var(--color-accent-green)"
-          >
-            <span class="font-heading text-h5 md:text-h4" style="color: var(--color-bg-main)">
-              P
-            </span>
-          </div>
-          <span class="font-heading text-h5 hidden sm:block" style="color: var(--color-text-main)">
-            PrintCo
+          <span class="font-heading text-h5 md:text-h4" style="color: var(--color-bg-main)">
+            P
           </span>
-        </button>
-
-        <!-- Logo Hover Menu -->
-        <Transition name="logo-menu">
-          <div
-            v-if="showLogoMenu"
-            class="absolute top-full left-0 mt-2 rounded-lg shadow-lg overflow-hidden min-w-[200px]"
-            style="background-color: var(--color-bg-main); border: 2px solid var(--color-accent-green)"
-          >
-            <button
-              @click="handleNavClick('/')"
-              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
-              style="color: var(--color-text-main)"
-            >
-              🏠 Acasă
-            </button>
-            <button
-              @click="handleNavClick('/servicii')"
-              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
-              style="color: var(--color-text-main)"
-            >
-              📋 Servicii
-            </button>
-            <button
-              @click="handleNavClick('/despre')"
-              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
-              style="color: var(--color-text-main)"
-            >
-              ℹ️ Despre Noi
-            </button>
-            <button
-              @click="handleNavClick('/contact')"
-              class="w-full text-left block px-4 py-3 font-body text-p2 hover:bg-[var(--color-accent-soft)] transition-colors"
-              style="color: var(--color-text-main)"
-            >
-              ✉️ Contact
-            </button>
-          </div>
-        </Transition>
-      </div>
+        </div>
+        <span class="font-heading text-h5 hidden sm:block" style="color: var(--color-text-main)">
+          PrintCo
+        </span>
+      </button>
 
       <!-- Desktop Navigation (Center) -->
       <ul class="hidden md:flex items-center justify-center gap-6 lg:gap-10 font-body text-p1">
@@ -264,10 +276,6 @@ const handleNavClick = (path) => {
 </template>
 
 <style scoped>
-.logo-container {
-  z-index: 60;
-}
-
 .nav-link {
   position: relative;
   display: inline-block;
@@ -303,18 +311,6 @@ const handleNavClick = (path) => {
 
 .nav-link-mobile:hover {
   background-color: var(--color-accent-soft);
-}
-
-/* Logo menu transition */
-.logo-menu-enter-active,
-.logo-menu-leave-active {
-  transition: all 0.2s ease;
-}
-
-.logo-menu-enter-from,
-.logo-menu-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
 }
 
 /* Mobile menu transition */

@@ -116,7 +116,7 @@ const nextSlide = () => {
   // Clear transition flag after animation completes
   setTimeout(() => {
     isTransitioning.value = false
-  }, 600) // Match CSS transition duration
+  }, 1000) // Match CSS transition duration
 }
 
 const previousSlide = () => {
@@ -131,7 +131,7 @@ const previousSlide = () => {
   // Clear transition flag after animation completes
   setTimeout(() => {
     isTransitioning.value = false
-  }, 600)
+  }, 1000)
 }
 
 const goToSlide = (index) => {
@@ -183,7 +183,7 @@ onUnmounted(() => {
       <div
         v-for="(slide, index) in slides"
         :key="slide.id"
-        class="absolute inset-0 transition-opacity duration-600 ease-in-out"
+        class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
         :class="index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'"
       >
         <img
@@ -197,10 +197,10 @@ onUnmounted(() => {
 
     <!-- Bottom Overlay Band with Blurred Background -->
     <div class="absolute bottom-0 left-0 right-0 z-20">
-      <!-- Blurred backdrop container -->
+      <!-- Blurred backdrop container - more transparent, only blur effect -->
       <div
         class="relative w-full py-8 md:py-12"
-        style="background-color: rgba(250, 247, 243, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px)"
+        style="background-color: rgba(0, 0, 0, 0.1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)"
       >
         <div class="mx-auto max-w-page px-4 md:px-8 flex items-center justify-between">
           <!-- Left Arrow -->
@@ -233,24 +233,24 @@ onUnmounted(() => {
                 <!-- Label -->
                 <p
                   class="font-body text-p2 md:text-p1 uppercase tracking-wider"
-                  style="color: var(--color-accent-green)"
+                  style="color: var(--color-bg-main)"
                 >
                   {{ slides[currentSlide].label }}
                 </p>
 
-                <!-- Title -->
+                <!-- Title - Smaller, using design tokens -->
                 <h1
-                  class="font-heading text-h3 md:text-h1 lg:text-[56px] font-bold"
-                  style="color: var(--color-text-main)"
+                  class="font-heading text-h2 md:text-h1 font-bold"
+                  style="color: var(--color-bg-main)"
                 >
                   {{ slides[currentSlide].title }}
                 </h1>
 
-                <!-- CTA Button -->
+                <!-- CTA Button - Thinner -->
                 <div class="pt-2">
                   <NuxtLink
                     :to="slides[currentSlide].ctaLink"
-                    class="inline-block px-6 md:px-8 py-3 md:py-4 rounded-lg font-body text-p1 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    class="inline-block px-6 md:px-8 py-2 md:py-3 rounded-lg font-body text-p1 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                     style="background-color: var(--color-accent-green); color: var(--color-bg-main)"
                   >
                     {{ slides[currentSlide].ctaText }}
@@ -293,7 +293,7 @@ onUnmounted(() => {
             class="w-2 h-2 rounded-full transition-all duration-300"
             :class="index === currentSlide ? 'w-8' : 'w-2'"
             :style="{
-              backgroundColor: index === currentSlide ? 'var(--color-accent-green)' : 'var(--color-border)'
+              backgroundColor: index === currentSlide ? 'var(--color-bg-main)' : 'rgba(255, 255, 255, 0.5)'
             }"
             :aria-label="`Go to slide ${index + 1}`"
           />
@@ -304,10 +304,10 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-/* Fade transition for slide content */
+/* Fade transition for slide content - smoother */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.4s ease;
+  transition: opacity 0.6s ease-in-out;
 }
 
 .fade-enter-from,
@@ -318,5 +318,6 @@ onUnmounted(() => {
 /* Ensure smooth image transitions */
 .hero-slideshow img {
   will-change: opacity;
+  transition: opacity 1s ease-in-out;
 }
 </style>
