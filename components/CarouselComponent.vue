@@ -60,11 +60,11 @@ const translateX = computed(() => {
       </div>
     </div>
 
-    <!-- Navigation Arrows -->
+    <!-- Navigation Arrows - nudged 10px inward to prevent clipping -->
     <button
       v-if="canGoPrev"
       @click="prev"
-      class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
+      class="absolute left-[10px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110 z-10"
       style="background-color: var(--color-accent-green); color: var(--color-bg-main)"
       aria-label="Previous"
     >
@@ -76,7 +76,7 @@ const translateX = computed(() => {
     <button
       v-if="canGoNext"
       @click="next"
-      class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
+      class="absolute right-[10px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110 z-10"
       style="background-color: var(--color-accent-green); color: var(--color-bg-main)"
       aria-label="Next"
     >
