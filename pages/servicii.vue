@@ -1,4 +1,6 @@
 <script setup>
+import PaperCard from '~/components/PaperCard.vue'
+
 useHead({
   title: 'Servicii - PrintCo'
 })
@@ -34,10 +36,7 @@ useHead({
       <section class="mx-auto max-w-page px-4 py-16">
         <div class="space-y-12">
           <!-- Service Item Template -->
-          <article
-            class="group p-8 rounded-lg border-l-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer"
-            style="background-color: var(--color-bg-alt); border-left-color: var(--color-accent-green)"
-          >
+          <PaperCard variant="accent-left" class="cursor-pointer">
             <h2 class="font-heading text-h3 mb-4" style="color: var(--color-text-main)">
               Cărți de Vizită
             </h2>
@@ -70,7 +69,7 @@ useHead({
             </div>
 
             <BaseButton label="Solicită Ofertă" />
-          </article>
+          </PaperCard>
 
           <!-- More service items will be added with real data -->
         </div>

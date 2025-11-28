@@ -1,4 +1,6 @@
 <script setup>
+import PaperCard from '~/components/PaperCard.vue'
+
 useHead({
   title: 'Cerințe Tehnice - PrintCo'
 })
@@ -33,10 +35,7 @@ useHead({
       <!-- Technical Details -->
       <section class="mx-auto max-w-page px-4 py-16">
         <div class="max-w-4xl mx-auto space-y-8">
-          <article
-            class="group p-8 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-            style="background-color: var(--color-bg-alt)"
-          >
+          <PaperCard variant="default">
             <h2 class="font-heading text-h3 mb-6" style="color: var(--color-text-main)">
               Fișiere Acceptate
             </h2>
@@ -46,12 +45,9 @@ useHead({
               <li>• JPEG</li>
               <li>• PNG</li>
             </ul>
-          </article>
+          </PaperCard>
 
-          <article
-            class="group p-8 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-            style="background-color: var(--color-bg-alt)"
-          >
+          <PaperCard variant="default">
             <h2 class="font-heading text-h3 mb-6" style="color: var(--color-text-main)">
               Specificații Tehnice
             </h2>
@@ -60,12 +56,9 @@ useHead({
               <p><strong style="color: var(--color-text-main)">Bleed:</strong> 3mm obligatoriu</p>
               <p><strong style="color: var(--color-text-main)">Colorimetrie:</strong> CMYK 100%</p>
             </div>
-          </article>
+          </PaperCard>
 
-          <article
-            class="group p-8 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-            style="background-color: var(--color-bg-alt)"
-          >
+          <PaperCard variant="default">
             <h2 class="font-heading text-h3 mb-6" style="color: var(--color-text-main)">
               Modalități de Trimitere
             </h2>
@@ -76,12 +69,9 @@ useHead({
               <li>• WeTransfer / Google Drive</li>
               <li>• Stick USB la sediu</li>
             </ul>
-          </article>
+          </PaperCard>
 
-          <article
-            class="p-8 rounded-lg border-l-4"
-            style="background-color: var(--color-bg-alt); border-left-color: var(--color-accent-green)"
-          >
+          <PaperCard variant="accent-left">
             <h2 class="font-heading text-h3 mb-6" style="color: var(--color-text-main)">
               Livrare
             </h2>
@@ -94,7 +84,7 @@ useHead({
             <p class="font-body text-p1" style="color: var(--color-text-muted)">
               <strong style="color: var(--color-text-main)">Livrare gratuită</strong> peste [X] RON
             </p>
-          </article>
+          </PaperCard>
         </div>
       </section>
     </main>
