@@ -1,4 +1,6 @@
 <script setup>
+import PaperCard from '~/components/PaperCard.vue'
+
 useHead({
   title: 'Despre Noi - PrintCo'
 })
