@@ -173,6 +173,15 @@ onUnmounted(() => {
             Contact
           </button>
         </li>
+        <li>
+          <button
+            @click="handleNavClick('/sphere')"
+            class="nav-link"
+            style="color: var(--color-accent-green)"
+          >
+            Sphere
+          </button>
+        </li>
       </ul>
 
       <!-- Mobile Navigation -->
@@ -266,6 +275,15 @@ onUnmounted(() => {
                 style="color: var(--color-text-main)"
               >
                 Contact
+              </button>
+            </li>
+            <li>
+              <button
+                @click="handleNavClick('/sphere')"
+                class="w-full text-left nav-link-mobile block px-6 py-3"
+                style="color: var(--color-accent-green)"
+              >
+                Sphere (Test)
               </button>
             </li>
           </ul>
